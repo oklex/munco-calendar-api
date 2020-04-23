@@ -1,0 +1,19 @@
+{
+  "name": "munco-calendar-api",
+  "version": "1.0.0",
+  "description": "api for calendar information",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build && npm run server",
+    "server": "node dist/index.js",
+    "build": "rimraf dist && npm run build-ts",
+    "build-ts": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "typescript": "^3.8.3"
+  }
+}
