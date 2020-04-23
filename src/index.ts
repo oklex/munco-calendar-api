@@ -3,6 +3,7 @@ const dotenv = require("dotenv").config();
 import { Express, Request, Response, NextFunction } from "express";
 import express from "express";
 import bodyParser from "body-parser";
+import api from "./routes";
 
 if (dotenv.error) {
   throw dotenv.error;
@@ -22,6 +23,7 @@ app.use(
 app.get("/", (req: Request, res: Response) => {
   res.send("hello world");
 });
+app.use('/api', api)
 
 app.listen(port, () => {
     console.log('App is running at port ' + port)
