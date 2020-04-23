@@ -1,4 +1,5 @@
 const dotenv = require("dotenv").config();
+var cors = require('cors')
 
 import { Express, Request, Response, NextFunction } from "express";
 import express from "express";
@@ -10,6 +11,7 @@ const port = process.env.PORT || 8081;
 const app: Express = express();
 
 app.use(bodyParser.json());
+app.use(cors())
 app.use(
   bodyParser.urlencoded({
     extended: true,
