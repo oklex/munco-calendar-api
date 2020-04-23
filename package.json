@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build-windows && node dist/index.js",
-    "aws-eb": "pm run build-linux && node dist/index.js",
+    "aws-eb": "npm run build-linux && node dist/index.js",
     "build-windows": "rimraf dist && npm run build-ts",
     "build-linux": "rm -rf dist && npm run build-ts",
     "build-ts": "tsc",
