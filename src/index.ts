@@ -5,10 +5,6 @@ import express from "express";
 import bodyParser from "body-parser";
 import api from "./routes";
 
-if (dotenv.error) {
-  throw dotenv.error;
-}
-
 const port = process.env.PORT || 8081;
 
 const app: Express = express();
