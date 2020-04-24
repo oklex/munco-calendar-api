@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from "express";
 import findLargestAppEndDate from "../utils/FindLargestAppEndDate";
 import AllCalendarData from "../data/CalendarData";
-import { ICalendarResponse } from "../models/CalendarResponse";
+import { ICalendarResponse, IApplicationType, IApplication } from "../models/CalendarResponse";
 
 import moment from "moment";
 
@@ -23,7 +23,7 @@ api.get("/all", (req: Request, res: Response) => {
     });
     res.send(data);
   } catch (err) {
-    res.status(500);
+    res.status(500).send(err);
   }
 });
 
