@@ -10,7 +10,6 @@ let FirebaseInitialize = () => {
         messagingSenderId: process.env.FirebaseConfig_messagingSenderId,
         appId: process.env.FirebaseConfig_appId
     }
-    console.log("Firebase config: ", config)
     firebase.initializeApp(config);
     return config
 }

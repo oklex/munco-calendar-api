@@ -80,24 +80,6 @@ import {
       },
       event: null,
       applications: [
-        // {
-        //   name: "CAIMUN Secretariat Applications",
-        //   type: IApplicationType.Secretariat,
-        //   start_date: new Date("April 15, 2020"),
-        //   end_date: new Date("April 30, 2020"),
-        //   applicationLink: "https://cahsmun.org/apply",
-        //   dates_tentative: true,
-        //   cost: null
-        // },
-        // {
-        //   name: "TEST Secretariat Applications",
-        //   type: IApplicationType.Secretariat,
-        //   start_date: new Date("March 15, 2020"),
-        //   end_date: new Date("March 26, 2020, 23:59:59"),
-        //   applicationLink: "https://cahsmun.org/apply",
-        //   dates_tentative: false,
-        //   cost: null
-        // }
       ]
     },
     {
@@ -110,15 +92,6 @@ import {
       },
       event: null,
       applications: [
-        // {
-        //   name: "CAIMUN Secretariat Applications",
-        //   type: IApplicationType.Secretariat,
-        //   start_date: new Date("March 20, 2020"),
-        //   end_date: new Date("April 29, 2020"),
-        //   applicationLink: "https://cahsmun.org/apply",
-        //   dates_tentative: true,
-        //   cost: null
-        // }
       ]
     },
     {
