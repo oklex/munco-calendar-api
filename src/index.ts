@@ -5,8 +5,10 @@ import { Express, Request, Response, NextFunction } from "express";
 import express from "express";
 import bodyParser from "body-parser";
 import api from "./routes";
+import FirebaseInitialize from "./database/Firebase";
 
 const port = process.env.PORT || 8081;
+FirebaseInitialize()
 
 const app: Express = express();
 
