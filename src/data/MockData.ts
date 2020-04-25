@@ -1,0 +1,120 @@
+import {
+  IEvent,
+  ICalendarResponse,
+  IApplication,
+  IApplicationType,
+  IOrganizationType,
+} from "../models/CalendarResponse";
+
+export const MockCalendarData: ICalendarResponse[] = [
+  {
+    organization: {
+      short_name: "TEST",
+      full_name: "Model United Nations",
+      organization_type: IOrganizationType.schoolSponsored,
+      website: "",
+      running_since: new Date("October, 2012"),
+    },
+    event: null,
+    applications: [
+      {
+        name: "Test Staff Applications",
+        type: IApplicationType.Staff,
+        start_date: new Date("March 28, 2018"),
+        end_date: new Date("April 30, 2020"),
+        applicationLink: "https://form.jotform.com",
+        dates_tentative: false,
+        cost: null,
+      },
+      {
+        name: "Test Staff Applications",
+        type: IApplicationType.Staff,
+        start_date: new Date("March 28, 2018"),
+        end_date: new Date("April 7, 2020"),
+        applicationLink: "https://form.jotform.com",
+        dates_tentative: false,
+        cost: null,
+      },
+      {
+        name: "Test Staff Applications",
+        type: IApplicationType.Staff,
+        start_date: new Date("March 28, 2018"),
+        end_date: new Date("April 3, 2020"),
+        applicationLink: "https://form.jotform.com",
+        dates_tentative: false,
+        cost: null,
+      },
+    ],
+  },
+  {
+    organization: {
+      short_name: "TEST 2",
+      full_name: "Model United Nations",
+      organization_type: IOrganizationType.schoolSponsored,
+      website: "",
+      running_since: new Date("October, 2012"),
+    },
+    event: null,
+    applications: [
+      {
+        name: "Test Staff Applications 1",
+        type: IApplicationType.Staff,
+        start_date: new Date("March 28, 2018"),
+        end_date: new Date("May 25, 2020"),
+        applicationLink: "https://form.jotform.com",
+        dates_tentative: false,
+        cost: null,
+      },
+      {
+        name: "Test Staff Applications 2",
+        type: IApplicationType.Staff,
+        start_date: new Date("March 28, 2018"),
+        end_date: new Date("June 3, 2020"),
+        applicationLink: "https://form.jotform.com",
+        dates_tentative: false,
+        cost: null,
+      },
+      {
+        name: "Test Staff Applications 3",
+        type: IApplicationType.Staff,
+        start_date: new Date("March 28, 2018"),
+        end_date: new Date("May 7 31, 2020"),
+        applicationLink: "https://form.jotform.com",
+        dates_tentative: false,
+        cost: null,
+      },
+    ],
+  },
+  {
+    organization: {
+      short_name: "TEST 3",
+      full_name: "Model United Nations",
+      organization_type: IOrganizationType.schoolSponsored,
+      website: "",
+      running_since: new Date("October, 2012"),
+    },
+    event: null,
+    applications: [
+      {
+        name: "Test Staff Applications",
+        type: IApplicationType.Staff,
+        start_date: new Date("March 28, 2018"),
+        end_date: new Date("May 3, 2020"),
+        applicationLink: "https://form.jotform.com",
+        dates_tentative: false,
+        cost: null,
+      },
+    ],
+  },
+  {
+    organization: {
+      short_name: "TEST 3",
+      full_name: "Model United Nations",
+      organization_type: IOrganizationType.schoolSponsored,
+      website: "",
+      running_since: new Date("October, 2012"),
+    },
+    event: null,
+    applications: [],
+  },
+];
