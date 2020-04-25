@@ -7,6 +7,7 @@ import {
   IApplication,
 } from "../models/CalendarResponse";
 import applicationRoute from "./applications";
+import getCalendarData from "../utils/GetData";
 
 const api = Router();
 
@@ -18,7 +19,7 @@ api.use('/applications', applicationRoute)
 
 api.get("/all", (req: Request, res: Response) => {
   try {
-    const data: ICalendarResponse[] = AllCalendarData;
+    const data: ICalendarResponse[] = getCalendarData();
     data.sort((alpha, beta) => {
       let alphaAppDate: Date = findLargestAppEndDate(alpha);
       let betaAppDate: Date = findLargestAppEndDate(beta);
