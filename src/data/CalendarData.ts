@@ -80,6 +80,15 @@ import {
       },
       event: null,
       applications: [
+        {
+          name: "CAIMUN Secretariat Applications",
+          type: IApplicationType.Secretariat,
+          start_date: new Date("April 5, 2020"),
+          end_date: new Date("April 28, 2020"),
+          applicationLink: "https://www.caimun.ca/apply.html",
+          dates_tentative: false,
+          cost: null
+        }
       ]
     },
     {
