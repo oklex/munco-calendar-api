@@ -12,7 +12,7 @@ const port = process.env.PORT || 8081;
 
 try {
   getCalendarData(); // ensure that NODE_ENV is valid
-  FirebaseInitialize();
+  // FirebaseInitialize();
 } catch (err) {
   console.log(err);
   throw err;
