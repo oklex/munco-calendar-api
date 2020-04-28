@@ -1,21 +1,18 @@
 import { expect, assert } from "chai";
 import "mocha";
-var httpMocks = require("node-mocks-http");
-// import applicationRoute from '../src/routes/applications'
+import request from 'supertest'
+import express from 'express'
+import app from '../src/app'
 
 export function applicationsTest() {
 	return describe("applicationsTest", () => {
 		context("route /api/applications/all", () => {
-			// let ApplicationsAllRequest = httpMocks.createRequest({
-			// 	method: "GET",
-			// 	url: "/api/applications/all",
-            // });
-            // var ApplicationsAllResponse = httpMocks.createResponse();
-            // applicationRoute(ApplicationsAllRequest, ApplicationsAllResponse)
-            
-            it("should not have empty applications lists", () => {
+            it("should not have empty applications lists", async () => {
+				await request(app).get('/api/applications/all').then((res) => {
+						// console.log('prototype: ', res.body[0].applications[0])
+				})
 				expect(false).to.be.false;
-			});
+			})
 			it("should not have closed applications", () => {
 				expect(false).to.be.false;
 			});
