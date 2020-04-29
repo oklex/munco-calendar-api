@@ -3,7 +3,10 @@ import "mocha";
 import request from "supertest";
 import express from "express";
 import app from "../src/app";
-import { ICalendarResponse, IApplicationType } from "../src/models/CalendarResponse";
+import {
+	ICalendarResponse,
+	IApplicationType,
+} from "../src/models/CalendarResponse";
 import { MockCalendarData } from "../src/data/MockData";
 
 export function applicationsTest() {
@@ -19,7 +22,9 @@ export function applicationsTest() {
 								let apps = obj.applications;
 								if (!apps || apps.length == 0) qualifying.push(true);
 							})
-						);
+						).catch((err) => {
+							console.log(err, res.body); 
+						});
 						if (qualifying.length > 0) return true;
 						else return false;
 					})
@@ -39,11 +44,10 @@ export function applicationsTest() {
 								let qualifyingDate: boolean[] = [];
 								await Promise.all(
 									apps.map((app) => {
-										console.log(app)
 										if (app.end_date < currentDate) qualifyingDate.push(true);
 									})
 								);
-								if (qualifyingDate.length > 0) qualifying.push(true)
+								if (qualifyingDate.length > 0) qualifying.push(true);
 							})
 						);
 						if (qualifying.length > 0) return true;
