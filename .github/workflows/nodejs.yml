@@ -27,5 +27,4 @@ jobs:
       env: 
         NODE_ENV: production
     - run: npm ci
-    - run: npm run build-linux --if-present
     - run: npm test

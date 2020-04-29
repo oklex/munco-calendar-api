@@ -13,33 +13,28 @@ export function applicationsTest() {
 	return describe("applicationsTest", () => {
 		context("route /api/applications/all", () => {
 			it("should not have empty applications lists", async () => {
-				await request(app)
+				const res = await request(app)
 					.get("/api/applications/all")
 					.then((res) => {
-						console.log(res.body)
-						return res
-					})
-					.then(async (res) => {
-						let qualifying: boolean[] = [];
-						await Promise.all(
-							res.body.map((obj: ICalendarResponse, index: any) => {
-								let apps = obj.applications;
-								if (!apps || apps.length == 0) qualifying.push(true);
-							})
-						)
-						if (qualifying.length > 0) return true;
-						else return false;
-					})
-					.then((ret) => {
-						expect(ret).to.be.false;
+						console.log(res.body);
+						return res;
 					});
+				let qualifying: boolean[] = [];
+				await Promise.all(
+					res.body.map((obj: ICalendarResponse, index: any) => {
+						let apps = obj.applications;
+						if (!apps || apps.length == 0) qualifying.push(true);
+					})
+				);
+				if (qualifying.length > 0) expect(true).to.be.false;
+				else expect(false).to.be.false;
 			});
 			it("should not have closed applications", async () => {
 				await request(app)
 					.get("/api/applications/all")
 					.then((res) => {
-						console.log(res.body)
-						return res
+						console.log(res.body);
+						return res;
 					})
 					.then(async (res) => {
 						let qualifying: boolean[] = [];
