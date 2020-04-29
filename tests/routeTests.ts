@@ -15,10 +15,6 @@ export function applicationsTest() {
 			it("should not have empty applications lists", async () => {
 				const res = await request(app)
 					.get("/api/applications/all")
-					.then((res) => {
-						console.log(res);
-						return res;
-					});
 				let qualifying: boolean[] = [];
 				await Promise.all(
 					res.body.map((obj: ICalendarResponse, index: any) => {
@@ -32,10 +28,6 @@ export function applicationsTest() {
 			it("should not have closed applications", async () => {
 				await request(app)
 					.get("/api/applications/all")
-					.then((res) => {
-						console.log(res);
-						return res;
-					})
 					.then(async (res) => {
 						let qualifying: boolean[] = [];
 						let currentDate: Date = new Date();
