@@ -10,4 +10,8 @@ applicationRoute.get("/all", applications_get_all);
 
 applicationRoute.get("/upcoming", applications_get_upcoming);
 
+applicationRoute.post("/new", (req: Request, res: Response) => {
+	res.send("PROTOTPYE ROUTE: /api/applications/new")
+})
+
 export default applicationRoute;

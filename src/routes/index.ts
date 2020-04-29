@@ -7,15 +7,19 @@ import {
   IApplication,
 } from "../models/CalendarResponse";
 import applicationRoute from "./applications";
+import organizationRoute from "./organizations"
 import getCalendarData from "../utils/GetData";
+import eventsRoute from "./events";
 
 const api = Router();
 
 api.get("/", (req: Request, res: Response) => {
-  res.send("hello world");
+  res.send("welcome to the MUNCO calendar API");
 });
 
 api.use('/applications', applicationRoute)
+api.use('/organizations', organizationRoute)
+api.use('/events', eventsRoute)
 
 api.get("/all", (req: Request, res: Response) => {
   try {
