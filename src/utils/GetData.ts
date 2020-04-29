@@ -8,7 +8,10 @@ const getCalendarData = () => {
 	} else if (process.env.NODE_ENV == "production") {
 		console.log("IN PRODUCTION: using real data");
 		return AllCalendarData;
-	} else {
+	} else if (process.env.GITHUB_ACTIONS == "true") { 
+		console.log("IN TESTS: using real data");
+		return AllCalendarData;
+	}else {
 		throw Error("NODE_ENV not specified");
 	}
 };
