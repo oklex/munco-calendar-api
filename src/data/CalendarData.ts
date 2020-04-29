@@ -84,6 +84,15 @@ import {
           name: "CAIMUN Secretariat Applications",
           type: IApplicationType.Secretariat,
           start_date: new Date("April 5, 2020"),
+          end_date: new Date("May 4, 2020"),
+          applicationLink: "https://www.caimun.ca/apply.html",
+          dates_tentative: false,
+          cost: null
+        },
+        {
+          name: "CAIMUN Secretary General Applications",
+          type: IApplicationType.Secretariat,
+          start_date: new Date("April 5, 2020"),
           end_date: new Date("April 28, 2020"),
           applicationLink: "https://www.caimun.ca/apply.html",
           dates_tentative: false,
@@ -134,7 +143,17 @@ import {
         running_since: new Date("January, 2002")
       },
       events: null,
-      applications: []
+      applications: [
+        {
+          name: "VMUN Staff Applications",
+          type: IApplicationType.Staff,
+          start_date: new Date("April 25, 2020"),
+          end_date: new Date("May 15, 2020, 23:59:59"),
+          applicationLink: "https://form.jotform.com/200615497979066",
+          dates_tentative: false,
+          cost: null
+        }
+      ]
     },
     {
       organization: {
@@ -177,7 +196,16 @@ import {
           applicationLink: "https://form.jotform.com/200615497979066",
           dates_tentative: false,
           cost: null
-        }
+        },
+        {
+          name: "SPAMUN Staff Applications",
+          type: IApplicationType.Staff,
+          start_date: new Date("April 20, 2020"),
+          end_date: new Date("May 9, 2020, 23:59:59"),
+          applicationLink: "https://www.jotform.com/build/201062297701246",
+          dates_tentative: false,
+          cost: null
+        },
       ]
     },{
       organization: {
