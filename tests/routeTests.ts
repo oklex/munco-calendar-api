@@ -15,6 +15,10 @@ export function applicationsTest() {
 			it("should not have empty applications lists", async () => {
 				await request(app)
 					.get("/api/applications/all")
+					.then((res) => {
+						console.log(res.body)
+						return res
+					})
 					.then(async (res) => {
 						let qualifying: boolean[] = [];
 						await Promise.all(
@@ -22,9 +26,7 @@ export function applicationsTest() {
 								let apps = obj.applications;
 								if (!apps || apps.length == 0) qualifying.push(true);
 							})
-						).catch((err) => {
-							console.log(err, res.body); 
-						});
+						)
 						if (qualifying.length > 0) return true;
 						else return false;
 					})
@@ -35,6 +37,10 @@ export function applicationsTest() {
 			it("should not have closed applications", async () => {
 				await request(app)
 					.get("/api/applications/all")
+					.then((res) => {
+						console.log(res.body)
+						return res
+					})
 					.then(async (res) => {
 						let qualifying: boolean[] = [];
 						let currentDate: Date = new Date();
