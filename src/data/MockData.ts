@@ -18,25 +18,25 @@ export const MockCalendarData: ICalendarResponse[] = [
     event: null,
     applications: [
       {
-        name: "Test Staff Applications",
+        name: "Test Staff Applications A1",
         type: IApplicationType.Staff,
         start_date: new Date("March 28, 2018"),
-        end_date: new Date("April 30, 2020"),
+        end_date: new Date("April 3, 2020"),
         applicationLink: "https://form.jotform.com",
         dates_tentative: false,
         cost: null,
       },
       {
-        name: "Test Staff Applications",
+        name: "Test Staff Applications A2",
         type: IApplicationType.Staff,
         start_date: new Date("March 28, 2018"),
-        end_date: new Date("April 7, 2020"),
+        end_date: new Date("Feb 7, 2020"),
         applicationLink: "https://form.jotform.com",
         dates_tentative: false,
         cost: null,
       },
       {
-        name: "Test Staff Applications",
+        name: "Test Staff Applications A3",
         type: IApplicationType.Staff,
         start_date: new Date("March 28, 2018"),
         end_date: new Date("April 3, 2020"),
@@ -57,7 +57,7 @@ export const MockCalendarData: ICalendarResponse[] = [
     event: null,
     applications: [
       {
-        name: "Test Staff Applications 1",
+        name: "Test Staff Applications 1 B1",
         type: IApplicationType.Staff,
         start_date: new Date("March 28, 2018"),
         end_date: new Date("May 25, 2020"),
@@ -66,7 +66,7 @@ export const MockCalendarData: ICalendarResponse[] = [
         cost: null,
       },
       {
-        name: "Test Staff Applications 2",
+        name: "Test Staff Applications 2 B2",
         type: IApplicationType.Staff,
         start_date: new Date("March 28, 2018"),
         end_date: new Date("June 3, 2020"),
@@ -75,7 +75,7 @@ export const MockCalendarData: ICalendarResponse[] = [
         cost: null,
       },
       {
-        name: "Test Staff Applications 3",
+        name: "Test Staff Applications 3 B3",
         type: IApplicationType.Staff,
         start_date: new Date("March 28, 2018"),
         end_date: new Date("May 7 31, 2020"),
@@ -96,7 +96,7 @@ export const MockCalendarData: ICalendarResponse[] = [
     event: null,
     applications: [
       {
-        name: "Test Staff Applications",
+        name: "Test Staff Applications C1",
         type: IApplicationType.Staff,
         start_date: new Date("March 28, 2018"),
         end_date: new Date("May 3, 2020"),
@@ -128,7 +128,7 @@ export const MockCalendarData: ICalendarResponse[] = [
     event: null,
     applications: [
       {
-        name: "Test Staff Applications 1",
+        name: "Test Staff Applications E1",
         type: IApplicationType.Staff,
         start_date: new Date("March 28, 2018"),
         end_date: new Date("May 26, 2020"),
@@ -137,7 +137,7 @@ export const MockCalendarData: ICalendarResponse[] = [
         cost: null,
       },
       {
-        name: "Test Staff Applications 2",
+        name: "Test Staff Applications E2",
         type: IApplicationType.Staff,
         start_date: new Date("March 28, 2018"),
         end_date: new Date("June 4, 2020"),
@@ -146,7 +146,7 @@ export const MockCalendarData: ICalendarResponse[] = [
         cost: null,
       },
       {
-        name: "Test Staff Applications 3",
+        name: "Test Staff Applications E3",
         type: IApplicationType.Staff,
         start_date: new Date("March 28, 2018"),
         end_date: new Date("May 4, 2020"),
