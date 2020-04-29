@@ -16,7 +16,7 @@ export function applicationsTest() {
 				const res = await request(app)
 					.get("/api/applications/all")
 					.then((res) => {
-						console.log(res.body);
+						console.log(res);
 						return res;
 					});
 				let qualifying: boolean[] = [];
@@ -33,7 +33,7 @@ export function applicationsTest() {
 				await request(app)
 					.get("/api/applications/all")
 					.then((res) => {
-						console.log(res.body);
+						console.log(res);
 						return res;
 					})
 					.then(async (res) => {
