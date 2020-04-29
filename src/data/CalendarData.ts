@@ -15,7 +15,7 @@ import {
         website: "https://vmun.com/",
         running_since: new Date("January, 2002")
       },
-      event: null,
+      events: null,
       applications: [
         {
           name: "VMUN Secretariat Applications",
@@ -36,7 +36,7 @@ import {
         website: "https://cahsmun.org/",
         running_since: new Date("April, 2004")
       },
-      event: null,
+      events: null,
       applications: [
         {
           name: "CAHSMUN Secretariat Applications",
@@ -57,7 +57,7 @@ import {
         website: "https://www.horizons.cahsmun.org/",
         running_since: new Date("Nov, 2019")
       },
-      event: null,
+      events: null,
       applications: [
         {
           name: "Horizons Secretariat Applications",
@@ -78,7 +78,7 @@ import {
         website: "https://www.caimun.ca/",
         running_since: new Date("April, 2009")
       },
-      event: null,
+      events: null,
       applications: [
         {
           name: "CAIMUN Secretariat Applications",
@@ -99,7 +99,7 @@ import {
         website: "http://cydcmun.org/",
         running_since: new Date("April, 2019")
       },
-      event: null,
+      events: null,
       applications: [
       ]
     },
@@ -111,7 +111,7 @@ import {
         website: "https://richmun.ca/",
         running_since: new Date("April, 2014")
       },
-      event: null,
+      events: null,
       applications: []
     },
     {
@@ -122,7 +122,7 @@ import {
         website: "https://www.vymun.com",
         running_since: new Date("October, 2005")
       },
-      event: null,
+      events: null,
       applications: []
     },
     {
@@ -133,7 +133,7 @@ import {
         website: "https://vmun.com/",
         running_since: new Date("January, 2002")
       },
-      event: null,
+      events: null,
       applications: []
     },
     {
@@ -144,7 +144,7 @@ import {
         website: "https://www.pacificmun.org",
         running_since: new Date("January, 2016")
       },
-      event: null,
+      events: null,
       applications: []
     },
   
@@ -156,7 +156,7 @@ import {
         website: "https://www.northmun.com",
         running_since: new Date("January, 2019")
       },
-      event: null,
+      events: null,
       applications: []
     },
     {
@@ -167,7 +167,7 @@ import {
         website: "https://spamun.org/",
         running_since: new Date("April, 2019")
       },
-      event: null,
+      events: null,
       applications: [
         {
           name: "SPAMUN Secretariat Applications",
@@ -187,7 +187,7 @@ import {
         website: "https://www.vymun.com/",
         running_since: new Date("October, 2012")
       },
-      event: null,
+      events: null,
       applications: [
         {
           name: "VYMUN External Staff Applications",

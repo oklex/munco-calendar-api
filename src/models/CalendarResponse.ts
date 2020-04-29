@@ -1,6 +1,6 @@
 export interface ICalendarResponse {
   organization: IOrganization;
-  event: IEvent | null;
+  events: IEvent[] | null;
   applications: IApplication[] | null;
 }
 

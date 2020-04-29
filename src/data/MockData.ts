@@ -15,7 +15,7 @@ export const MockCalendarData: ICalendarResponse[] = [
       website: "",
       running_since: new Date("October, 2012"),
     },
-    event: null,
+    events: null,
     applications: [
       {
         name: "Test Staff Applications A1",
@@ -54,7 +54,7 @@ export const MockCalendarData: ICalendarResponse[] = [
       website: "",
       running_since: new Date("October, 2012"),
     },
-    event: null,
+    events: null,
     applications: [
       {
         name: "Test Staff Applications 1 B1",
@@ -93,7 +93,7 @@ export const MockCalendarData: ICalendarResponse[] = [
       website: "",
       running_since: new Date("October, 2012"),
     },
-    event: null,
+    events: null,
     applications: [
       {
         name: "Test Staff Applications C1",
@@ -114,7 +114,7 @@ export const MockCalendarData: ICalendarResponse[] = [
       website: "",
       running_since: new Date("October, 2012"),
     },
-    event: null,
+    events: null,
     applications: [],
   },
   {
@@ -125,7 +125,7 @@ export const MockCalendarData: ICalendarResponse[] = [
       website: "",
       running_since: new Date("October, 2012"),
     },
-    event: null,
+    events: null,
     applications: [
       {
         name: "Test Staff Applications E1",
@@ -164,7 +164,7 @@ export const MockCalendarData: ICalendarResponse[] = [
       website: "",
       running_since: new Date("October, 2012"),
     },
-    event: null,
+    events: null,
     applications: [],
   }
 ];

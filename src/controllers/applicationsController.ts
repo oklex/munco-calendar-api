@@ -27,9 +27,14 @@ export const applications_get_all = async function (
 							tempApps.push(app);
 						}
 					})
-				);
-				obj.applications = tempApps;
-				results.push(obj);
+				).then(() => {
+					results.push({
+						organization: obj.organization,
+						events: null,
+						applications: tempApps,
+					});
+				});
+				// obj.applications = tempApps;
 			})
 		)
 			.then(async () => {
