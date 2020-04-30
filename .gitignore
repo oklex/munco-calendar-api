@@ -7,3 +7,9 @@ dist
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+#VSCodeCounter
+details.md
+results.csv
+results.md
+results.txt
