@@ -4,8 +4,8 @@ import whois from "whois-promise";
 export let checkName = (name: string): boolean => {
 	if (name) {
 		let regex: RegExp = new RegExp(/^[a-zA-Z\s]*$/);
-		console.log("checkNames read string: ", name.match(regex).toString());
-		if (name == name.match(regex).toString()) return true;
+		// console.log("checkNames read string: ", name.match(regex).toString());
+		if (name.match(regex) && name == name.match(regex).toString()) return true;
 		else return false;
 	} else {
 		return false;
