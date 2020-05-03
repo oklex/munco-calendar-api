@@ -1,5 +1,10 @@
 import { Request, Response, NextFunction } from "express";
-import { checkWebsite, checkName } from "../utils/CheckInput";
+import {
+	checkWebsite,
+	checkName,
+	checkOrganizationType,
+	checkValidDate,
+} from "../utils/CheckInput";
 
 export const checkValidInput = async (
 	req: Request,
@@ -11,7 +16,9 @@ export const checkValidInput = async (
 	if (
 		checkName(req.body.short_name) &&
 		checkName(req.body.full_name) &&
-		(await checkWebsite(req.body.website))
+		(await checkWebsite(req.body.website)) &&
+		(await checkOrganizationType(req.body.organization_type) &&
+		checkValidDate(req.body.running_since))
 	) {
 		next();
 	} else {

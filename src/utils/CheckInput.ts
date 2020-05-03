@@ -1,5 +1,6 @@
 //@ts-ignore
 import whois from "whois-promise";
+import { IOrganizationType } from "../models/CalendarResponse";
 
 export let checkName = (name: string): boolean => {
 	if (name) {
@@ -16,9 +17,9 @@ export let checkWebsite = async (website: string): Promise<boolean> => {
 	// check if it's unique (not on Firebase)
 	// check whois
 	if (website) {
-        return true
+		return true;
 		// let whoisResult: boolean = false;
-        // let result: any = await whois.json(website)
+		// let result: any = await whois.json(website)
 		// if (result) whoisResult = true;
 		// else whoisResult = false;
 		// console.log("during promise: ", whoisResult);
@@ -26,3 +27,21 @@ export let checkWebsite = async (website: string): Promise<boolean> => {
 		// return whoisResult;
 	} else return false;
 };
+
+export let checkOrganizationType = async (org: string) => {
+	let returnVal: boolean = false;
+	await Promise.all(
+		Object.keys(IOrganizationType).map(async (obj: string) => {
+			if (obj === org || (<any>IOrganizationType)[obj] === org) {
+				returnVal = true;
+			}
+		})
+	);
+	return returnVal;
+};
+
+export let checkValidDate = (date: string) => {
+	let checkDate: number = Date.parse(date)
+	if (checkDate) return true
+	else return false
+}
