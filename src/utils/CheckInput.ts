@@ -1,6 +1,6 @@
 //@ts-ignore
 import whois from "whois-promise";
-import { IOrganizationType } from "../models/CalendarResponse";
+import { IOrganizationType, IApplicationType } from "../models/CalendarResponse";
 
 export let checkName = (name: string): boolean => {
 	if (name) {
@@ -33,6 +33,19 @@ export let checkOrganizationType = async (org: string) => {
 	await Promise.all(
 		Object.keys(IOrganizationType).map(async (obj: string) => {
 			if (obj === org || (<any>IOrganizationType)[obj] === org) {
+				returnVal = true;
+			}
+		})
+	);
+	return returnVal;
+};
+
+
+export let checkApplicationType = async (app: string) => {
+	let returnVal: boolean = false;
+	await Promise.all(
+		Object.keys(IApplicationType).map(async (obj: string) => {
+			if (obj === app || (<any>IApplicationType)[obj] === app) {
 				returnVal = true;
 			}
 		})

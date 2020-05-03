@@ -5,8 +5,9 @@ import {
 	checkOrganizationType,
 	checkValidDate,
 } from "../utils/CheckInput";
+import { IOrganization } from "../models/CalendarResponse";
 
-export const checkValidInput = async (
+export const checkOrgValidInput = async (
 	req: Request,
 	res: Response,
 	next: NextFunction

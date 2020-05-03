@@ -119,4 +119,13 @@ export const applications_get_upcoming = async function (
 	}
 };
 
+export const applications_create_new = async function (
+	req: Request,
+	res: Response
+) {
+	// check input (all present)
+	// push to db (new route needed)
+	res.send("PROTOTPYE ROUTE: /api/applications/new")
+}
+
 // get upcoming
