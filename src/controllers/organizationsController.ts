@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import firebase from "firebase";
+import { getDomain, getDomainKey } from "../utils/getDomain";
 
 export const post_new_organization = async function (
 	req: Request,
@@ -8,7 +9,10 @@ export const post_new_organization = async function (
 	try {
 		// check { req.body. {short_name, full_name, organization_type, website, running_since } }
 		// -> create a general purpose checking function that takes in "rules"
-		firebase.database().ref('calendar/test' ).set(req.body)
+		firebase
+			.database()
+			.ref("calendar/" + getDomainKey(req.body.website))
+			.set(req.body);
 		res.send("PROTOTPYE ROUTE: /api/organizations/new");
 		// 1 check DB for the uniqueness of candidate keys {website}
 		// 2 create default information? nope
