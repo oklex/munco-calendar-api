@@ -18,7 +18,6 @@ export const post_new_organization = async function (
 		// 3 fail if any data is missing
 		// 4 add to unique firebase route
 	} catch (err) {
-		// console.log(err)
 		res.status(500).send("internal error: " + err);
 	}
 };

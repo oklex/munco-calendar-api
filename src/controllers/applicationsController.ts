@@ -7,6 +7,8 @@ import {
 } from "../models/CalendarResponse";
 import moment from "moment";
 import getCalendarData from "../utils/GetData";
+import { dbPush } from "../database/Firebase";
+import { getApplicationPath } from "../database/getPaths";
 
 // get all
 export const applications_get_all = async function (
@@ -125,7 +127,21 @@ export const applications_create_new = async function (
 ) {
 	// check input (all present)
 	// push to db (new route needed)
-	res.send("PROTOTPYE ROUTE: /api/applications/new")
-}
+	try {
+		let newApp: IApplication = {
+			name: req.body.name,
+			type: req.body.type,
+			start_date: req.body.start_date,
+			end_date: req.body.end_date,
+			dates_tentative: false,
+			applicationLink: req.body.applicationLink,
+			cost: null
+		}
+		dbPush(getApplicationPath(req.body.organizationSite), newApp);
+		res.send("PROTOTPYE ROUTE: /api/applications/new");
+	} catch (err) {
+		res.status(500).send(err);
+	}
+};
 
 // get upcoming
