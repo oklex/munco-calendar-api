@@ -14,4 +14,13 @@ let FirebaseInitialize = () => {
     return config
 }
 
+export let dbUpdate = (route:string, obj: any) => {
+    try {
+        firebase.database().ref(route).set(obj)
+    } catch (err) {
+        console.log(err)
+        throw Error(err)
+    }
+}
+
 export default FirebaseInitialize
