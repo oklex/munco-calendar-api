@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import firebase from "firebase";
-import { getDomain, getDomainKey } from "../utils/getDomain";
-import { dbUpdate } from "../database/Firebase";
-import { getOrganizationPath } from "../database/getPaths";
+import { getDomain, getDomainKey } from "../../utils/getDomain";
+import { dbUpdate } from "../../database/Firebase";
+import { getOrganizationPath } from "../../database/getPaths";
 
 export const post_new_organization = async function (
 	req: Request,
