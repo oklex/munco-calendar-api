@@ -1,17 +1,13 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { post_new_organization } from "../controllers/organizations/orgMod";
+import { organization_post_new, organization_patch_byID, organization_delete_byID } from "../controllers/organizations/orgMod";
 import { checkOrgValidInput } from "../middleware/checkOrgInputs";
 
 const organizationRoute = Router();
 
-organizationRoute.post('/new', checkOrgValidInput, post_new_organization)
+organizationRoute.post('/new', checkOrgValidInput, organization_post_new)
 
-organizationRoute.patch('/:id', (req:Request, res:Response) => {
-    res.send("Prototype route: patch by Firebase obj key")
-})
+organizationRoute.patch('/:id', organization_patch_byID)
 
-organizationRoute.delete('/:id', (req:Request, res:Response) => {
-    res.send("Prototype route: patch by Firebase obj key")
-})
+organizationRoute.delete('/:id', organization_delete_byID)
 
 export default organizationRoute

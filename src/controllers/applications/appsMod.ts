@@ -24,10 +24,26 @@ export const applications_create_new = async function (
 			end_date: req.body.end_date,
 			dates_tentative: false,
 			applicationLink: req.body.applicationLink,
-			cost: null
-		}
+			cost: null,
+		};
 		dbPush(getApplicationPath(req.body.organizationSite), newApp);
 		res.send("PROTOTPYE ROUTE: /api/applications/new");
+	} catch (err) {
+		res.status(500).send(err);
+	}
+};
+
+export const applications_patch_byID = async function (req: Request, res: Response) {
+	try {
+		res.send("Prototype route: patch by Firebase obj key");
+	} catch (err) {
+		res.status(500).send(err);
+	}
+};
+
+export const applications_delete_byID = async function (req: Request, res: Response) {
+	try {
+		res.send("Prototype route: delete by Firebase obj key");
 	} catch (err) {
 		res.status(500).send(err);
 	}

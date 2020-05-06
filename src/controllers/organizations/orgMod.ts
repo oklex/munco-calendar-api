@@ -4,7 +4,7 @@ import { getDomain, getDomainKey } from "../../utils/getDomain";
 import { dbUpdate } from "../../database/Firebase";
 import { getOrganizationPath } from "../../database/getPaths";
 
-export const post_new_organization = async function (
+export const organization_post_new = async function (
 	req: Request,
 	res: Response
 ) {
@@ -17,6 +17,28 @@ export const post_new_organization = async function (
 		// 2 create default information? nope
 		// 3 fail if any data is missing
 		// 4 add to unique firebase route
+	} catch (err) {
+		res.status(500).send("internal error: " + err);
+	}
+};
+
+export const organization_patch_byID = async function (
+	req: Request,
+	res: Response
+) {
+	try {
+		res.send("Prototype route: patch by Firebase obj key");
+	} catch (err) {
+		res.status(500).send("internal error: " + err);
+	}
+};
+
+export const organization_delete_byID = async function (
+	req: Request,
+	res: Response
+) {
+	try {
+		res.send("Prototype route: delete by Firebase obj key");
 	} catch (err) {
 		res.status(500).send("internal error: " + err);
 	}
