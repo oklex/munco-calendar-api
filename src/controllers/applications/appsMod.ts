@@ -35,6 +35,9 @@ export const applications_create_new = async function (
 
 export const applications_patch_byID = async function (req: Request, res: Response) {
 	try {
+		// check that the ID exists on the organization key path
+		// find body keys that match valid options
+		// make a firebase update call on the ID
 		res.send("Prototype route: patch by Firebase obj key");
 	} catch (err) {
 		res.status(500).send(err);
@@ -43,6 +46,8 @@ export const applications_patch_byID = async function (req: Request, res: Respon
 
 export const applications_delete_byID = async function (req: Request, res: Response) {
 	try {
+		// check that the ID exists on the organization key path
+		// make a firebase delete call on the ID
 		res.send("Prototype route: delete by Firebase obj key");
 	} catch (err) {
 		res.status(500).send(err);

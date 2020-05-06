@@ -27,6 +27,9 @@ export const organization_patch_byID = async function (
 	res: Response
 ) {
 	try {
+		// check that the ID exists on the path
+		// find body keys that match valid options
+		// make a firebase update call on the ID
 		res.send("Prototype route: patch by Firebase obj key");
 	} catch (err) {
 		res.status(500).send("internal error: " + err);
@@ -38,6 +41,8 @@ export const organization_delete_byID = async function (
 	res: Response
 ) {
 	try {
+		// check that the ID exists on the path
+		// make a firebase delete call on the ID
 		res.send("Prototype route: delete by Firebase obj key");
 	} catch (err) {
 		res.status(500).send("internal error: " + err);
