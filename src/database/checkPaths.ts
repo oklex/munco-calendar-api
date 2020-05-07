@@ -1,12 +1,17 @@
-import { orgApplicationsPath, calendarDataPath } from "./constants"
-import { getDomainKey } from "../utils/getDomain"
+import firebase from "firebase";
 
-export let checkApplicationPath = (organizationSite: string, applicationKey: string): boolean => {
-    console.log('prototype path checker')
-    return true
-}
-
-export let checkOrganizationPath = (organizationSite: string):boolean => {
-    console.log('prototype path checker')
-    return true
-}
+export let checkPathNotNull = async (
+	path: string,
+	hasKey: string
+): Promise<boolean> => {
+	console.log("check path: ", path);
+	let returnVal: boolean = await firebase
+		.database()
+		.ref(path)
+		.once("value")
+		.then(async (snapshot: any) => {
+			console.log("snapshot: ", snapshot);
+			return snapshot.hasChild(hasKey);
+		});
+	return returnVal;
+};
