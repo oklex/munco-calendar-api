@@ -14,19 +14,27 @@ let FirebaseInitialize = () => {
     return config
 }
 
-export let dbUpdate = (route:string, obj: any) => {
+export let dbSet = async (route:string, obj: any) => {
     try {
-        firebase.database().ref(route).set(obj)
+        await firebase.database().ref(route).set(obj)
     } catch (err) {
         console.log(err)
         throw Error(err)
     }
 }
 
-
-export let dbPush = (route:string, obj: any) => {
+export let dbUpdate = async (route:string, obj: any) => {
     try {
-        firebase.database().ref(route).push(obj)
+        await firebase.database().ref(route).update(obj)
+    } catch (err) {
+        console.log(err)
+        throw Error(err)
+    }
+}
+
+export let dbPush = async (route:string, obj: any) => {
+    try {
+        await firebase.database().ref(route).push(obj)
     } catch (err) {
         console.log(err)
         throw Error(err)
