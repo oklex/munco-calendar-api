@@ -9,7 +9,7 @@
     "build-windows": "rimraf dist && npm run build-ts",
     "build-linux": "rm -rf dist && npm run build-ts",
     "build-ts": "tsc",
-    "test": "mocha -r ts-node/register tests/test.ts",
+    "test": "mocha -r ts-node/register tests/test.ts --exit",
     "deploy": "eb deploy"
   },
   "author": "",
