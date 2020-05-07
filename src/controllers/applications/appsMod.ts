@@ -13,7 +13,12 @@ import {
 	getOrganizationPath,
 	getSingleApplicationPath,
 } from "../../database/getPaths";
-import { checkWebsite, checkName, checkValidDate, checkApplicationType } from "../../utils/CheckInput";
+import {
+	checkWebsite,
+	checkName,
+	checkValidDate,
+	checkApplicationType,
+} from "../../utils/CheckInput";
 import { checkPathNotNull } from "../../database/checkPaths";
 
 export const applications_create_new = async function (
