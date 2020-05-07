@@ -1,20 +1,16 @@
 import { expect, assert } from "chai";
 import "mocha";
 import request from "supertest";
-import express from "express";
 import app from "../src/app";
 import {
 	ICalendarResponse,
-	IApplicationType,
 } from "../src/models/CalendarResponse";
-import { MockCalendarData } from "../src/data/MockData";
 
-export function applicationsTest() {
-	return describe("applicationsTest", () => {
+export function applicationsGetTests() {
+	return describe("applicationsGetTest", () => {
 		context("route /api/applications/all", () => {
 			it("should not have empty applications lists", async () => {
-				const res = await request(app)
-					.get("/api/applications/all")
+				const res = await request(app).get("/api/applications/all");
 				let qualifying: boolean[] = [];
 				await Promise.all(
 					res.body.map((obj: ICalendarResponse, index: any) => {
