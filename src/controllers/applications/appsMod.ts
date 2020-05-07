@@ -7,7 +7,7 @@ import {
 } from "../../models/CalendarResponse";
 import moment from "moment";
 import getCalendarData from "../../utils/GetData";
-import { dbPush, dbUpdate } from "../../database/Firebase";
+import { dbPush, dbUpdate, dbDelete } from "../../database/Firebase";
 import {
 	getApplicationsPath,
 	getOrganizationPath,
@@ -74,7 +74,6 @@ export const applications_patch_byID = async function (
 			patchObj.applicationLink = req.body.applicationLink;
 		if (req.body.cost) patchObj.cost = req.body.cost;
 
-		console.log(patchObj);
 		await dbUpdate(
 			getSingleApplicationPath(req.body.website_key, req.params.id),
 			patchObj
@@ -98,7 +97,14 @@ export const applications_delete_byID = async function (
 	try {
 		// check that the ID exists on the organization key path
 		// make a firebase delete call on the ID
-		res.send("Prototype route: delete by Firebase obj key");
+		await dbDelete(
+			getSingleApplicationPath(req.body.website_key, req.params.id)
+		).then(() => {
+			res.send("delete successful");
+		}).catch((err) => {
+			console.log(err);
+			res.status(500).send("error deleting data" + err);
+		});;
 	} catch (err) {
 		res.status(500).send(err);
 	}

@@ -1,11 +1,11 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { applications_create_new, applications_patch_byID, applications_delete_byID } from "../controllers/applications/appsMod";
-import { checkAppValidInput } from "../middleware/checkNewAppInputs";
+import { checkAppValidInput } from "../middleware/checkAppInputs";
 import {
 	applications_get_all,
 	applications_get_upcoming,
 } from "../controllers/applications/appsGet";
-import { checkAppPatchInput } from "../middleware/checkPatchAppInput";
+import { checkAppIDInput } from "../middleware/checkPatchAppInput";
 
 const applicationRoute = Router();
 
@@ -25,7 +25,7 @@ req.body = {
 }
 */
 
-applicationRoute.patch("/:id", checkAppPatchInput, applications_patch_byID);
+applicationRoute.patch("/:id", checkAppIDInput, applications_patch_byID);
 /* 
 req.body = {
   website_key: string,
@@ -39,7 +39,7 @@ req.body = {
 }
 */
 
-applicationRoute.delete("/:id", applications_delete_byID);
+applicationRoute.delete("/:id", checkAppIDInput, applications_delete_byID);
 /* 
 req.body = {
   website_key: string

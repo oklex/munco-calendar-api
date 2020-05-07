@@ -41,5 +41,14 @@ export let dbPush = async (route:string, obj: any) => {
     }
 }
 
+export let dbDelete = async (route: string) => {
+    try {
+        await firebase.database().ref(route).remove()
+    } catch (err) {
+        console.log(err)
+        throw Error(err)
+    }
+}
+
 
 export default FirebaseInitialize
