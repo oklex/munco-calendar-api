@@ -1,13 +1,13 @@
-import { expect, assert } from "chai";
+import { expect } from "chai";
 import "mocha";
 import request from "supertest";
-import app from "../src/app";
+import app from "../../src/app";
 import {
 	ICalendarResponse,
-} from "../src/models/CalendarResponse";
+} from "../../src/models/CalendarResponse";
 
 export function applicationsGetTests() {
-	return describe("applicationsGetTest", () => {
+	return describe("Tests for GET applications", () => {
 		context("route /api/applications/all", () => {
 			it("should not have empty applications lists", async () => {
 				const res = await request(app).get("/api/applications/all");
