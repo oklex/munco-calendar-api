@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import firebase from "firebase";
 import { getDomain, getDomainKey } from "../../utils/getDomain";
-import { dbUpdate } from "../../database/Firebase";
+import { dbSet } from "../../database/Firebase";
 import { getOrganizationPath } from "../../database/getPaths";
+import { checkName, checkWebsite, checkOrganizationType, checkValidDate } from "../../utils/CheckInput";
 
 export const organization_post_new = async function (
 	req: Request,
@@ -11,8 +12,9 @@ export const organization_post_new = async function (
 	try {
 		// check { req.body. {short_name, full_name, organization_type, website, running_since } }
 		// -> create a general purpose checking function that takes in "rules"
-		dbUpdate(getOrganizationPath(req.body.website), req.body);
-		res.send("PROTOTPYE ROUTE: /api/organizations/new");
+		await dbSet(getOrganizationPath(req.body.website), req.body).then(() => {
+			res.send("success");
+		});
 		// 1 check DB for the uniqueness of candidate keys {website}
 		// 2 create default information? nope
 		// 3 fail if any data is missing
