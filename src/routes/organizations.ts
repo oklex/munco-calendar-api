@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { organization_post_new, organization_patch_byID, organization_delete_byID } from "../controllers/organizations/orgMod";
-import { checkOrgValidInput } from "../middleware/checkOrgInputs";
+import { checkOrgValidInput } from "../middleware/checkNewOrgInputs";
 
 const organizationRoute = Router();
 

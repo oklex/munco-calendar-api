@@ -8,7 +8,7 @@ import {
 import moment from "moment";
 import getCalendarData from "../../utils/GetData";
 import { dbPush } from "../../database/Firebase";
-import { getApplicationPath } from "../../database/getPaths";
+import { getApplicationsPath } from "../../database/getPaths";
 
 // get all
 export const applications_get_all = async function (
