@@ -10,7 +10,7 @@ export let checkName = (name: string): boolean => {
 		if (name.match(regex) && name == name.match(regex).toString()) return true;
 		else return false;
 	} else {
-		console.log("name is invalid: ", name);
+		// console.log("name is invalid: ", name);
 		// throw Error("name is invalid: " + name)
 		return false;
 	}
