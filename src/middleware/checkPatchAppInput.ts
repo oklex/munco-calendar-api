@@ -12,7 +12,7 @@ export const checkAppIDInput = async (req: Request, res: Response, next: NextFun
 		checkWebsite(req.body.website_key) &&
 		(await checkPathNotNull(
 			getApplicationsPath(req.body.website_key),
-			req.params.id
+			req.params.appId
 		))
 	) {
 		next()

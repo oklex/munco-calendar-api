@@ -20,6 +20,7 @@ import {
 	checkApplicationType,
 } from "../../utils/CheckInput";
 import { checkPathNotNull } from "../../database/checkPaths";
+import { IApplicationRequest } from "../../models/CalendarRequests";
 
 export const applications_create_new = async function (
 	req: Request,
@@ -53,29 +54,19 @@ export const applications_patch_byID = async function (
 ) {
 	try {
 		// check that the ID exists on the organization key path
-		interface IApplicationRequest {
-			name?: string;
-			type?: IApplicationType;
-			start_date?: Date;
-			end_date?: Date;
-			dates_tentative?: boolean;
-			applicationLink?: string;
-			cost?: number;
-		}
-
 		let patchObj: IApplicationRequest = {};
-		if (req.body.name) patchObj.name = req.body.name;
-		if (req.body.type) patchObj.type = req.body.type;
-		if (req.body.start_date) patchObj.start_date = req.body.start_date;
-		if (req.body.end_date) patchObj.end_date = req.body.end_date;
+		if (req.body.name && checkName(req.body.name)) patchObj.name = req.body.name;
+		if (req.body.type && checkApplicationType(req.body.type)) patchObj.type = req.body.type;
+		if (req.body.start_date && checkValidDate(req.body.start_date)) patchObj.start_date = req.body.start_date;
+		if (req.body.end_date && checkValidDate(req.body.end_date)) patchObj.end_date = req.body.end_date;
 		if (req.body.dates_tentative)
 			patchObj.dates_tentative = req.body.dates_tentative;
-		if (req.body.applicationLink)
+		if (req.body.applicationLink && checkWebsite(req.body.applicationLink))
 			patchObj.applicationLink = req.body.applicationLink;
 		if (req.body.cost) patchObj.cost = req.body.cost;
 
 		await dbUpdate(
-			getSingleApplicationPath(req.body.website_key, req.params.id),
+			getSingleApplicationPath(req.body.website_key, req.params.appId),
 			patchObj
 		)
 			.then(() => {
@@ -98,13 +89,15 @@ export const applications_delete_byID = async function (
 		// check that the ID exists on the organization key path
 		// make a firebase delete call on the ID
 		await dbDelete(
-			getSingleApplicationPath(req.body.website_key, req.params.id)
-		).then(() => {
-			res.send("delete successful");
-		}).catch((err) => {
-			console.log(err);
-			res.status(500).send("error deleting data" + err);
-		});;
+			getSingleApplicationPath(req.body.website_key, req.params.appId)
+		)
+			.then(() => {
+				res.send("delete successful");
+			})
+			.catch((err) => {
+				console.log(err);
+				res.status(500).send("error deleting data" + err);
+			});
 	} catch (err) {
 		res.status(500).send(err);
 	}

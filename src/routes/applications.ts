@@ -25,7 +25,7 @@ req.body = {
 }
 */
 
-applicationRoute.patch("/:id", checkAppIDInput, applications_patch_byID);
+applicationRoute.patch("/:appId", checkAppIDInput, applications_patch_byID);
 /* 
 req.body = {
   website_key: string,
@@ -39,7 +39,7 @@ req.body = {
 }
 */
 
-applicationRoute.delete("/:id", checkAppIDInput, applications_delete_byID);
+applicationRoute.delete("/:appId", checkAppIDInput, applications_delete_byID);
 /* 
 req.body = {
   website_key: string
