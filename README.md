@@ -46,16 +46,21 @@ POST /api/organizations/new
     - checkOrgValidInput: checks if valid obj
 - controller: organization_post_new
 
-PATCH /api/organizations/:id
+PATCH /api/organizations/single
 - input:
-    - 
+    - req.body.website_key
 - middleware: 
+    - checkOrgKey: checks that website_key is valid
 - controller: 
+    - organization_patch_byID
 
-DELETE /api/organizations/:id
+DELETE /api/organizations/single
 - input:
+    - req.body.website_key
 - middleware: 
+    - checkOrgKey: checks that website_key is valid
 - controller: 
+    - organization_delete_byID
 
 
 # TBA Routes
