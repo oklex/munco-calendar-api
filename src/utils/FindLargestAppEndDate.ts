@@ -14,7 +14,6 @@ function findLargestAppEndDate(alpha: ICalendarResponse) {
       }
     });
   }
-//   console.log("findLargestAppEndDate", alphaAppDate);
   return alphaAppDate;
 }
 
