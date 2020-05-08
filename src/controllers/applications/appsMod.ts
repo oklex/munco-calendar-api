@@ -40,7 +40,7 @@ export const applications_create_new = async function (
 		};
 		await dbPush(getApplicationsPath(req.body.organizationSite), newApp).then(
 			() => {
-				res.send("success");
+				res.send("post successful");
 			}
 		);
 	} catch (err) {
