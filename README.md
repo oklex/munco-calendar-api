@@ -1,4 +1,9 @@
 this is the readme file
+# Todo
+[ ] Refactor input checking middleware to be individaully testable and use express-validate-input with meaningful error messages
+[ ] Implement '/api/events/' routes
+[ ] Prototype a notification system
+[ ] Prototype a web crawler to scan for updated information
 
 # Implemented Routes
 ## Applications
