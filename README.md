@@ -1,13 +1,21 @@
 this is the readme file
 # Todo
 [x] Refactor input checking middleware to be individaully testable
+
 [ ] Implement GET route for /organizations/:id ? include={apps, events, all}
+
 [ ] Refactor to make definitions of 'website_key' consistent
+
 [x] Refactor request object creation into testable utils
+
 [ ] Refactor error messages to be more meaningful in middleware
+
 [ ] Implement '/api/events/' routes
+
 [ ] Prototype a notification system
+
 [ ] Prototype a web crawler to scan for updated information
+
 
 # Implemented Routes
 ## Applications
