@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import firebase from "firebase";
 import { getDomain, getDomainKey } from "../../utils/getDomain";
 import { dbSet, dbUpdate, dbDelete } from "../../database/Firebase";
-import { getOrganizationPath } from "../../database/getPaths";
+import { getOrganizationPathFromWebsite, getOrganizationPath } from "../../database/getPaths";
 import {
 	checkName,
 	checkWebsite,
@@ -16,7 +16,7 @@ export const organization_post_new = async function (
 	res: Response
 ) {
 	try {
-		await dbSet(getOrganizationPath(req.body.website), req.body).then(() => {
+		await dbSet(getOrganizationPathFromWebsite(req.body.website), req.body).then(() => {
 			res.send("post successful");
 		});
 	} catch (err) {
@@ -44,7 +44,7 @@ export const organization_patch_byID = async function (
 		if (req.body.running_since && checkValidDate(req.body.running_since))
 			newOrg.running_since = req.body.running_since;
 
-		await dbUpdate(getOrganizationPath(req.body.website_key), newOrg).then(
+		await dbUpdate(getOrganizationPath(req.params.website_key), newOrg).then(
 			() => {
 				res.send("patch successful");
 			}
@@ -59,7 +59,7 @@ export const organization_delete_byID = async function (
 	res: Response
 ) {
 	try {
-		dbDelete(getOrganizationPath(req.body.website_key)).then(() => {
+		dbDelete(getOrganizationPath(req.params.website_key)).then(() => {
 			res.send("delete successful");
 		});
 	} catch (err) {

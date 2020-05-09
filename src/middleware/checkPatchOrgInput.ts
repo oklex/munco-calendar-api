@@ -8,11 +8,10 @@ import { getDomainKey } from "../utils/getDomain";
 
 export const checkOrgKey = async (req: Request, res: Response, next: NextFunction) => {
 	if (
-		req.body.website_key &&
-		checkWebsite(req.body.website_key) &&
+		req.params.website_key &&
 		(await checkPathNotNull(
 			calendarDataPath,
-			getDomainKey(req.body.website_key)
+			req.params.website_key
 		))
 	) {
 		next()

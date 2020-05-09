@@ -7,8 +7,8 @@ const organizationRoute = Router();
 
 organizationRoute.post('/new', checkOrgValidInput, organization_post_new)
 
-organizationRoute.patch('/single', checkOrgKey, organization_patch_byID)
+organizationRoute.patch('/:website_key', checkOrgKey, organization_patch_byID)
 
-organizationRoute.delete('/single', checkOrgKey, organization_delete_byID)
+organizationRoute.delete('/:website_key', checkOrgKey, organization_delete_byID)
 
 export default organizationRoute
