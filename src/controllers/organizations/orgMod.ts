@@ -10,6 +10,7 @@ import {
 	checkValidDate,
 } from "../../utils/CheckInput";
 import { IOrganizationRequest } from "../../models/CalendarRequests";
+import { MapBodyToOrgRequest } from "../../utils/MapBody";
 
 export const organization_post_new = async function (
 	req: Request,
@@ -29,20 +30,7 @@ export const organization_patch_byID = async function (
 	res: Response
 ) {
 	try {
-		let newOrg: IOrganizationRequest = {};
-		if (req.body.short_name && checkName(req.body.short_name))
-			newOrg.short_name = req.body.short_name;
-		if (req.body.full_name && checkName(req.body.full_name))
-			newOrg.full_name = req.body.full_name;
-		if (
-			req.body.organization_type &&
-			checkOrganizationType(req.body.organization_type)
-		)
-			newOrg.organization_type = req.body.organization_type;
-		if (req.body.website && checkWebsite(req.body.website))
-			newOrg.website = req.body.website;
-		if (req.body.running_since && checkValidDate(req.body.running_since))
-			newOrg.running_since = req.body.running_since;
+		let newOrg: IOrganizationRequest = MapBodyToOrgRequest(req.body)
 
 		await dbUpdate(getOrganizationPath(req.params.website_key), newOrg).then(
 			() => {

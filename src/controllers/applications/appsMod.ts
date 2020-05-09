@@ -21,6 +21,7 @@ import {
 } from "../../utils/CheckInput";
 import { checkPathNotNull } from "../../database/checkPaths";
 import { IApplicationRequest } from "../../models/CalendarRequests";
+import { MapBodyToAppRequest } from "../../utils/MapBody";
 
 export const applications_create_new = async function (
 	req: Request,
@@ -54,16 +55,7 @@ export const applications_patch_byID = async function (
 ) {
 	try {
 		// check that the ID exists on the organization key path
-		let patchObj: IApplicationRequest = {};
-		if (req.body.name && checkName(req.body.name)) patchObj.name = req.body.name;
-		if (req.body.type && checkApplicationType(req.body.type)) patchObj.type = req.body.type;
-		if (req.body.start_date && checkValidDate(req.body.start_date)) patchObj.start_date = req.body.start_date;
-		if (req.body.end_date && checkValidDate(req.body.end_date)) patchObj.end_date = req.body.end_date;
-		if (req.body.dates_tentative)
-			patchObj.dates_tentative = req.body.dates_tentative;
-		if (req.body.applicationLink && checkWebsite(req.body.applicationLink))
-			patchObj.applicationLink = req.body.applicationLink;
-		if (req.body.cost) patchObj.cost = req.body.cost;
+		let patchObj: IApplicationRequest = MapBodyToAppRequest(req.body)
 
 		await dbUpdate(
 			getSingleApplicationPath(req.body.website_key, req.params.appId),
