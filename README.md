@@ -27,16 +27,13 @@ POST /api/applications/new
 
 PATCH /api/applications/:id
 - input:
-    - req.body.website_key
     - req.params.id
 - middleware: 
     - checkAppIDInput: checks if ID input is valid
 - controller: applications_patch_byID
 
 DELETE /api/applications/:id
-- input:
-    - req.body.website_key
-    - req.params.id
+- input: none
 - middleware: 
     - checkAppIDInput: checks if ID input is valid
 - controller: applications_delete_byID
@@ -51,7 +48,7 @@ POST /api/organizations/new
     - checkOrgValidInput: checks if valid obj
 - controller: organization_post_new
 
-PATCH /api/organizations/single
+PATCH /api/organizations/:id
 - input:
     - req.body.website_key
 - middleware: 
@@ -59,9 +56,8 @@ PATCH /api/organizations/single
 - controller: 
     - organization_patch_byID
 
-DELETE /api/organizations/single
-- input:
-    - req.body.website_key
+DELETE /api/organizations/:id
+- input: none
 - middleware: 
     - checkOrgKey: checks that website_key is valid
 - controller: 
