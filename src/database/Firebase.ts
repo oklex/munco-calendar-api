@@ -14,6 +14,17 @@ let FirebaseInitialize = () => {
     return config
 }
 
+export let dbGetOnce = async (route: string) => {
+    try {
+        return await firebase.database().ref(route).once('value', (snapshot: any) => {
+            return snapshot
+        })
+    } catch (err) {
+        console.log(err)
+        throw Error(err)
+    }
+}
+
 export let dbSet = async (route:string, obj: any) => {
     try {
         await firebase.database().ref(route).set(obj)
