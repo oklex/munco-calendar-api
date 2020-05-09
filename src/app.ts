@@ -4,7 +4,6 @@ import { Express, Request, Response, NextFunction } from "express";
 import express from "express";
 import bodyParser from "body-parser";
 import api from "./routes";
-import { checkAuthToken } from "./middleware/checkAuthToken";
 
 const app: Express = express();
 
@@ -16,6 +15,6 @@ app.use(
   })
 );
 
-app.use("/api", checkAuthToken, api);
+app.use("/api", api);
 
 export default app
