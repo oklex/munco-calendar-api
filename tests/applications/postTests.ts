@@ -2,16 +2,27 @@ import "mocha";
 import { expect } from "chai";
 import request from "supertest";
 import app from "../../src/app";
+import { checkAppValidInput } from "../../src/middleware/checkAppInputs";
+import { Request, Response, NextFunction } from "express";
+import { checkAppIDInput } from "../../src/middleware/checkPatchAppInput";
 
 export function applicationsPostTests() {
 	return describe("Tests for POST and PATCH for applications", () => {
-		context("input checker tests POST /api/applications/new", () => {
+		context("input checker tests POST middleware:checkAppValidInput", () => {
 			it("should not work if data is missing", (done) => {
-				request(app).post("/api/applications/new").expect(400, done);
+				app.post("/test", checkAppValidInput, (req: Request, res: Response) => {
+					res.status(200).send("success");
+				});
+				request(app)
+					.post("/test")
+					.expect(400, done);
 			});
 			it("should not work if name has special char", (done) => {
+				app.post("/test", checkAppValidInput, (req: Request, res: Response) => {
+					res.status(200).send("success");
+				});
 				request(app)
-					.post("/api/applications/new")
+					.post("/test")
 					.send({
 						name: "app name !",
 						start_date: "jan 1 2020",
@@ -23,8 +34,11 @@ export function applicationsPostTests() {
 					.expect(400, done);
 			});
 			it("should not work if any date is wrong", (done) => {
+				app.post("/test", checkAppValidInput, (req: Request, res: Response) => {
+					res.status(200).send("success");
+				});
 				request(app)
-					.post("/api/applications/new")
+					.post("/test")
 					.send({
 						name: "app name",
 						start_date: "not a date",
@@ -36,8 +50,11 @@ export function applicationsPostTests() {
 					.expect(400, done);
 			});
 			it("should not work if type is wrong", (done) => {
+				app.post("/test", checkAppValidInput, (req: Request, res: Response) => {
+					res.status(200).send("success");
+				});
 				request(app)
-					.post("/api/applications/new")
+					.post("/test")
 					.send({
 						name: "app name",
 						start_date: "jan 1 2020",
@@ -50,8 +67,11 @@ export function applicationsPostTests() {
 			});
 
 			it("should not work if website is wrong", (done) => {
+				app.post("/test", checkAppValidInput, (req: Request, res: Response) => {
+					res.status(200).send("success");
+				});
 				request(app)
-					.post("/api/applications/new")
+					.post("/test")
 					.send({
 						name: "app name",
 						start_date: "jan 1 2020",
@@ -63,34 +83,60 @@ export function applicationsPostTests() {
 					.expect(400, done);
 			});
 
-			// it("should work if all data is valid",  (done) => {
-			// 	request(app)
-			// 		.post("/api/applications/new")
-			// 		.send({
-			// 			name: "app name",
-			// 			start_date: "jan 1 2020",
-			// 			end_date: "jan 5 2020",
-			// 			type: "staff",
-			// 			applicationLink: "richmun.ca/apply",
-			// 			dates_tentative: false,
-			// 			organizationSite: "richmun.ca",
-			// 		})
-			// 		.expect(200, done);
-			// });
+			it("should work if all data is valid", (done) => {
+				app.post("/test", checkAppValidInput, (req: Request, res: Response) => {
+					res.status(200).send("success");
+				});
+				request(app)
+					.post("/test")
+					.send({
+						name: "app name",
+						start_date: "jan 1 2020",
+						end_date: "jan 5 2020",
+						type: "staff",
+						applicationLink: "richmun.ca/apply",
+						dates_tentative: false,
+						organizationSite: "richmun.ca",
+					})
+					.expect(200, done);
+			});
 		});
 
-		// context("input checker tests PATCH /api/applications/:id", () => {
-		// 	it("should not work if ID doesn't exist on organization's applications",  (done) => {
-		// 		request(app).patch("/api/applications/-M6hbSNUk5_FgPfjQEOx").send({
-        //             website_key: "munco.ca",
-        //             type: "Secretariat"
-        //         }).expect(500, done);
-        //     });
-		// 	it("should not work if website key doesn't exist",  (done) => {
-		// 		request(app).patch("/api/applications/-M6hbSNUk5_FgPfjQEOx").send({
-        //             type: "Secretariat"
-        //         }).expect(400, done);
-		// 	});
-		// });
+		context("input checker tests PATCH middleware:checkAppIDInput", () => {
+			it("should not work if ID doesn't exist on organization's applications", (done) => {
+				app.patch("/test/:id", checkAppIDInput, (req: Request, res: Response) => {
+					res.status(200).send("success");
+				});
+				request(app)
+					.patch("/test/some_code")
+					.send({
+						type: "Secretariat",
+					})
+					.expect(400, done);
+			});
+			it("should not work if website key doesn't exist", (done) => {
+				app.patch("/test:id", checkAppIDInput, (req: Request, res: Response) => {
+					res.status(200).send("success");
+				});
+				request(app)
+					.patch("/test/some_code")
+					.send({
+						type: "Secretariat",
+					})
+					.expect(400, done);
+			});
+			it("should work if website key exists", (done) => {
+				app.patch("/test:id", checkAppIDInput, (req: Request, res: Response) => {
+					res.status(200).send("success");
+				});
+				request(app)
+					.patch("/test/some_code")
+					.send({
+						website_key: "munco.ca",
+						type: "Secretariat",
+					})
+					.expect(200, done);
+			});
+		});
 	});
 }
