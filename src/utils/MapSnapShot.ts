@@ -1,4 +1,5 @@
 import { IOrganization, IApplication } from "../models/CalendarResponse";
+import app from "../app";
 
 export let MapOrgSnapshot = (orgObj: any): IOrganization => {
 	if (
@@ -17,6 +18,7 @@ export let MapOrgSnapshot = (orgObj: any): IOrganization => {
 		};
 		return responseObj;
 	} else {
+		console.log("Invalid organization data: ", orgObj)
 		throw Error("This Organization object is invalid: " + orgObj);
 	}
 };
@@ -41,6 +43,17 @@ export let MapAppSnapshot = (appObj: any): IApplication => {
 		};
 		return responseObj;
 	} else {
-		throw Error("This Organization object is invalid: " + appObj);
+		console.log("Invalid app data: ", appObj)
+		throw Error("This Application object is invalid: " + appObj);
 	}
 };
+
+export let MapAppArraySnapShot = (appArray: any): IApplication[] => {
+	let apps: IApplication[] = []
+	let keys: string[] = Object.keys(appArray);
+	keys.forEach((key:any) => {
+		console.log("key: ", key, appArray[key])
+		apps.push(appArray[key])
+	})
+	return apps
+}

@@ -1,24 +1,32 @@
 import { Request, Response } from "express";
 import { dbDelete, dbGetOnce } from "../../database/Firebase";
 import { calendarDataPath } from "../../database/constants";
-import { IOrganization } from "../../models/CalendarResponse";
-import { MapOrgSnapshot } from "../../utils/MapSnapShot";
+import {
+	IOrganization,
+	ICalendarResponse,
+	IApplication,
+	IEvent,
+} from "../../models/CalendarResponse";
+import { MapOrgSnapshot, MapAppArraySnapShot } from "../../utils/MapSnapShot";
+import { getOrganizationPath } from "../../database/getPaths";
 
 export const organizations_get_all = async function (
 	req: Request,
 	res: Response
 ) {
 	try {
-		let allOrgs: IOrganization[] = []
-		let data: any = await dbGetOnce(calendarDataPath)
-		let keys:string[] = Object.keys(data.val())
-		keys.forEach((key:string) => {
-			allOrgs.push(MapOrgSnapshot(data.val()[key]))
-		})
-		res.send(allOrgs)
+		let allOrgs: IOrganization[] = [];
+		let data: any = await dbGetOnce(calendarDataPath);
+		let keys: string[] = Object.keys(data.val());
+		
+		keys.forEach((key: string) => {
+			allOrgs.push(MapOrgSnapshot(data.val()[key]));
+		});
+		res.send(allOrgs);
 	} catch (err) {
-        res.status(500).send('GET failed ' + err)
-    }
+		console.log(err)
+		res.status(500).send("GET failed " + err);
+	}
 };
 
 export const organizations_get_byID = async function (
@@ -26,11 +34,37 @@ export const organizations_get_byID = async function (
 	res: Response
 ) {
 	try {
-        // map the results onto an obj of Organization request
-        // if url params for include have "all", "applications", or "events" then include them
+		// map the results onto an obj of Organization request
+		// if url params for include have "all", "applications", or "events" then include them
+		let orgKey: string = req.params.id
+		let urlParams: any = req.query
+		let includeApps: boolean = false
+		let includeEvents: boolean = false
+		if (urlParams['include'] && urlParams['include'] == "events") {
+			includeEvents = true
+		} else if (urlParams['include'] && urlParams['include'] == "applications") {
+			includeApps = true
+		} else if (urlParams['include'] && urlParams['include'] == "all") {
+			includeEvents = true
+			includeApps = true
+		}
 
-        res.send('prototype /organizations/:id')
+		let data: any = await dbGetOnce(getOrganizationPath(orgKey));
+		let resOrganization: IOrganization = MapOrgSnapshot(data.val())
+		console.log("response data: ", data.val().applications)
+		console.log("response data: ", Object.keys(data.val().applications))
+
+		let resApps: IApplication[] = MapAppArraySnapShot(data.val().applications)
+		let eventApps: IEvent[] = []
+		
+		let response: ICalendarResponse = {
+			organization: resOrganization,
+			events: includeEvents? eventApps : null,
+			applications: includeApps? resApps : null
+		}
+		res.send(response);
 	} catch (err) {
-        res.status(500).send('GET failed')
-    }
+		console.log(err)
+		res.status(500).send("GET failed" + err);
+	}
 };
