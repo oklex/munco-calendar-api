@@ -24,6 +24,13 @@ export const checkAppValidInput = async (
 	) {
 		next();
 	} else {
+		// console.log(checkName(req.body.name) )
+		// console.log(checkValidDate(req.body.start_date) )
+		// console.log(checkValidDate(req.body.end_date))
+		// console.log((await checkWebsite(req.body.applicationLink)) )
+		// console.log((await checkApplicationType(req.body.type)) )
+		// console.log((await checkWebsite(req.body.organizationSite)))
+
 		res.status(400).send("invalid input fields");
 	}
 };
