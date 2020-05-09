@@ -10,7 +10,7 @@ import getCalendarData from "../../utils/GetData";
 import { dbPush, dbUpdate, dbDelete } from "../../database/Firebase";
 import {
 	getApplicationsPath,
-	getOrganizationPath,
+	getOrganizationPathFromWebsite,
 	getSingleApplicationPath,
 } from "../../database/getPaths";
 import {

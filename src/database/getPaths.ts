@@ -2,8 +2,12 @@ import { getDomainKey } from "../utils/getDomain"
 import { calendarDataPath, orgApplicationsPath } from "./constants"
 import applicationRoute from "../routes/applications"
 
-export let getOrganizationPath = (website:string):string => {
+export let getOrganizationPathFromWebsite = (website:string):string => {
     return calendarDataPath + '/' + getDomainKey(website)
+}
+
+export let getOrganizationPath = (website_key:string):string => {
+    return calendarDataPath + '/' + website_key
 }
 
 export let getApplicationsPath = (organizationSite: string):string => {
