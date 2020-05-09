@@ -7,8 +7,12 @@ import {
 import { checkOrgValidInput } from "../middleware/checkNewOrgInputs";
 import { checkOrgKey } from "../middleware/checkPatchOrgInput";
 import { checkAuthToken } from "../middleware/checkAuthToken";
+import { organizations_get_all, organizations_get_byID } from "../controllers/organizations/orgGet";
 
 const organizationRoute = Router();
+
+organizationRoute.get('/all', organizations_get_all)
+organizationRoute.get('/:id', organizations_get_byID)
 
 organizationRoute.post(
 	"/new",
