@@ -20,7 +20,7 @@ export const organizations_get_all = async function (
 		let keys: string[] = Object.keys(data.val());
 		
 		keys.forEach((key: string) => {
-			allOrgs.push(MapOrgSnapshot(data.val()[key]));
+			allOrgs.push(MapOrgSnapshot(data.val()[key], key));
 		});
 		res.send(allOrgs);
 	} catch (err) {
@@ -50,7 +50,7 @@ export const organizations_get_byID = async function (
 		}
 
 		let data: any = await dbGetOnce(getOrganizationPath(orgKey));
-		let resOrganization: IOrganization = MapOrgSnapshot(data.val())
+		let resOrganization: IOrganization = MapOrgSnapshot(data.val(), orgKey)
 		console.log("response data: ", data.val().applications)
 		console.log("response data: ", Object.keys(data.val().applications))
 

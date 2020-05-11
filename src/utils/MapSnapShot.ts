@@ -1,7 +1,7 @@
 import { IOrganization, IApplication } from "../models/CalendarResponse";
 import app from "../app";
 
-export let MapOrgSnapshot = (orgObj: any): IOrganization => {
+export let MapOrgSnapshot = (orgObj: any, website_key?: string): IOrganization => {
 	if (
 		orgObj.short_name &&
 		orgObj.full_name &&
@@ -10,6 +10,7 @@ export let MapOrgSnapshot = (orgObj: any): IOrganization => {
 		orgObj.running_since
 	) {
 		let responseObj: IOrganization = {
+			website_key: website_key,
 			short_name: orgObj.short_name,
 			full_name: orgObj.full_name,
 			organization_type: orgObj.organization_type,
