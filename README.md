@@ -52,6 +52,16 @@ DELETE /api/applications/:id
 
 
 ## Organizations
+GET /api/organizations/all
+- input: none
+- middleware: none
+- controller: organizations_get_all
+
+GET /api/organizations/:id
+- input: none
+- middleware: none
+- controller: organizations_get_byID
+
 POST /api/organizations/new
 - input:
     - IOrganization
