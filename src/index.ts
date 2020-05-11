@@ -6,12 +6,6 @@ import FirebaseInitialize from "./database/Firebase";
 const port = process.env.PORT || 8081;
 
 try {
-	console.log(
-		"Can AWS read this properly?: ",
-		process.env.NODE_ENV,
-		process.env.AUTH_TOKEN,
-		process.env.FIREBASE_DATABASE_URL
-	);
 	getCalendarData(); // ensure that NODE_ENV is valid
 	FirebaseInitialize();
 } catch (err) {
