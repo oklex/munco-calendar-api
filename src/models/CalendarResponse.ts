@@ -23,6 +23,7 @@ export interface IEvent {
 }
 
 export interface IApplication {
+  application_key?: string,
   name: string;
   type: IApplicationType;
   start_date: Date;
