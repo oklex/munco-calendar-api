@@ -2,14 +2,14 @@ import { Request, Response, NextFunction } from "express";
 import {
 	checkWebsite
 } from "../utils/CheckInput";
-import { checkPathNotNull } from "../database/checkPaths";
+import { checkPathInUse } from "../database/checkPaths";
 import { calendarDataPath } from "../database/constants";
 import { getDomainKey } from "../utils/getDomain";
 
 export const checkOrgKey = async (req: Request, res: Response, next: NextFunction) => {
 	if (
 		req.params.website_key &&
-		(await checkPathNotNull(
+		(await checkPathInUse(
 			calendarDataPath,
 			req.params.website_key
 		))

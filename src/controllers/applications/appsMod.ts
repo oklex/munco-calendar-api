@@ -19,7 +19,7 @@ import {
 	checkValidDate,
 	checkApplicationType,
 } from "../../utils/CheckInput";
-import { checkPathNotNull } from "../../database/checkPaths";
+import { checkPathInUse } from "../../database/checkPaths";
 import { IApplicationRequest } from "../../models/CalendarRequests";
 import { MapBodyToAppRequest } from "../../utils/MapBody";
 

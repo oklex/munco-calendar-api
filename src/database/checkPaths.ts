@@ -1,16 +1,15 @@
 import firebase from "firebase";
 
-export let checkPathNotNull = async (
+export let checkPathInUse = async (
 	path: string,
 	hasKey: string
 ): Promise<boolean> => {
-	if (process.env.NODE_ENV !== "production") return true
-	let returnVal: boolean = await firebase
+	// console.log("is path null? ", path, hasKey);
+	return await firebase
 		.database()
 		.ref(path)
 		.once("value")
 		.then(async (snapshot: any) => {
 			return snapshot.hasChild(hasKey);
 		});
-	return returnVal;
 };
