@@ -6,6 +6,9 @@ import {
 	checkValidDate,
 } from "../utils/CheckInput";
 import { IOrganization } from "../models/CalendarResponse";
+import { checkPathNotNull } from "../database/checkPaths";
+import { getOrganizationPathFromWebsite } from "../database/getPaths";
+import { calendarDataPath } from "../database/constants";
 
 export const checkOrgValidInput = async (
 	req: Request,
@@ -19,7 +22,8 @@ export const checkOrgValidInput = async (
 		checkName(req.body.full_name) &&
 		(await checkWebsite(req.body.website)) &&
 		(await checkOrganizationType(req.body.organization_type) &&
-		checkValidDate(req.body.running_since))
+		checkValidDate(req.body.running_since)) &&
+		!(await checkPathNotNull(calendarDataPath, req.body.website))
 	) {
 		next();
 	} else {
