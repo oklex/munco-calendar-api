@@ -18,10 +18,6 @@ export const checkOrgValidInput = async (
 ) => {
 	// check { req.body. {short_name, full_name, organization_type, website, running_since } }
 	// -> create a general purpose checking function that takes in "rules"
-	console.log(
-		"is path in use? ",
-		await checkPathInUse(calendarDataPath, getDomainKey(req.body.website))
-	);
 	if (
 		checkName(req.body.short_name) &&
 		checkName(req.body.full_name) &&
