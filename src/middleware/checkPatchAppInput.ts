@@ -4,14 +4,14 @@ import {
 } from "../utils/CheckInput";
 import { IOrganization } from "../models/CalendarResponse";
 import { checkPathInUse } from "../database/checkPaths";
-import { getApplicationsPath } from "../database/getPaths";
+import { getApplicationsPath, getApplicationsPathWithKey } from "../database/getPaths";
+import { calendarDataPath, orgApplicationsPath } from "../database/constants";
 
 export const checkAppIDInput = async (req: Request, res: Response, next: NextFunction) => {
 	if (
 		req.body.website_key &&
-		checkWebsite(req.body.website_key) &&
 		(await checkPathInUse(
-			getApplicationsPath(req.body.website_key),
+			( getApplicationsPathWithKey(req.body.website_key)),
 			req.params.appId
 		))
 	) {

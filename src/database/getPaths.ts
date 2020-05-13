@@ -14,6 +14,14 @@ export let getApplicationsPath = (organizationSite: string):string => {
     return calendarDataPath + '/' + getDomainKey(organizationSite) + orgApplicationsPath
 }
 
+export let getApplicationsPathWithKey = (website_key: string):string => {
+    return calendarDataPath + '/' + website_key + orgApplicationsPath
+}
+
 export let getSingleApplicationPath = (organizationSite: string, applicationKey: string):string => {
     return calendarDataPath + '/' + getDomainKey(organizationSite) + orgApplicationsPath + "/" + applicationKey
+}
+
+export let getSingleApplicationPathWithKey = (website_key: string, applicationKey: string):string => {
+    return calendarDataPath + '/' + website_key + orgApplicationsPath + "/" + applicationKey
 }

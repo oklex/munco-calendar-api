@@ -12,6 +12,7 @@ import {
 	getApplicationsPath,
 	getOrganizationPathFromWebsite,
 	getSingleApplicationPath,
+	getSingleApplicationPathWithKey,
 } from "../../database/getPaths";
 import {
 	checkWebsite,
@@ -56,9 +57,9 @@ export const applications_patch_byID = async function (
 	try {
 		// check that the ID exists on the organization key path
 		let patchObj: IApplicationRequest = MapBodyToAppRequest(req.body)
-
+		console.log('running patch by id')
 		await dbUpdate(
-			getSingleApplicationPath(req.body.website_key, req.params.appId),
+			getSingleApplicationPathWithKey(req.body.website_key, req.params.appId),
 			patchObj
 		)
 			.then(() => {
@@ -66,10 +67,10 @@ export const applications_patch_byID = async function (
 			})
 			.catch((err) => {
 				console.log(err);
-				res.status(500).send("error updating data" + err);
+				res.status(500).send("error updating data " + err);
 			});
 	} catch (err) {
-		res.status(500).send("error updating data" + err);
+		res.status(500).send("error updating data " + err);
 	}
 };
 

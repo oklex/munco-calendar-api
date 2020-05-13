@@ -18,6 +18,7 @@ export interface IEventRequest {
 }
 
 export interface IApplicationRequest {
+    website_key?: string,
     name?: string;
     type?: IApplicationType;
     start_date?: Date;

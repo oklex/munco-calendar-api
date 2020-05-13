@@ -40,6 +40,7 @@ POST /api/applications/new
 PATCH /api/applications/:id
 - input:
     - req.params.id
+    - IApplicationRequest
 - middleware: 
     - checkAppIDInput: checks if ID input is valid
 - controller: applications_patch_byID
