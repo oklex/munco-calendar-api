@@ -13,6 +13,7 @@ import {
 	getOrganizationPathFromWebsite,
 	getSingleApplicationPath,
 	getSingleApplicationPathWithKey,
+	getApplicationsPathWithKey,
 } from "../../database/getPaths";
 import {
 	checkWebsite,
@@ -40,7 +41,7 @@ export const applications_create_new = async function (
 			applicationLink: req.body.applicationLink,
 			cost: null,
 		};
-		await dbPush(getApplicationsPath(req.body.organizationSite), newApp).then(
+		await dbPush(getApplicationsPathWithKey(req.body.website_key), newApp).then(
 			() => {
 				res.send("post successful");
 			}

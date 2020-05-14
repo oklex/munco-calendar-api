@@ -10,6 +10,10 @@ export let checkPathInUse = async (
 		.ref(path)
 		.once("value")
 		.then(async (snapshot: any) => {
-			return snapshot.hasChild(hasKey);
-		});
+			if (snapshot.hasChild(hasKey)) return true
+			else {
+				console.log("can't resolve path", path, hasKey)
+				return false
+			};
+		})
 };

@@ -10,13 +10,13 @@ export let checkName = (name: string): boolean => {
 		if (name.match(regex) && name == name.match(regex).toString()) return true;
 		else return false;
 	} else {
-		// console.log("name is invalid: ", name);
+		console.log("name is invalid: ", name);
 		// throw Error("name is invalid: " + name)
 		return false;
 	}
 };
 
-export let checkWebsite = async (website: string): Promise<boolean> => {
+export let checkWebsite = (website: string): boolean => {
 	// check if it's unique (not on Firebase)
 	// check whois
 	if (website) {
@@ -29,7 +29,7 @@ export let checkWebsite = async (website: string): Promise<boolean> => {
 		// console.log("whois.lookup returns: ", website, result);
 		// return whoisResult;
 	} else {
-		// console.log("website is invalid: ", website);
+		console.log("website is invalid: ", website);
 		// throw Error("website is invalid: " + website)
 		return false;
 	}
@@ -44,7 +44,7 @@ export let checkOrganizationType = async (org: string) => {
 			}
 		})
 	).catch((err) => {
-		// console.log("website is invalid: ", org);
+		console.log("website is invalid: ", org, err);
 		throw Error(err);
 	});
 	return returnVal;
@@ -59,7 +59,7 @@ export let checkApplicationType = async (app: string) => {
 			}
 		})
 	).catch((err) => {
-		// console.log("app type is invalid: ", app);
+		console.log("app type is invalid: ", app, err);
 		throw Error(err);
 	});
 	return returnVal;
@@ -69,7 +69,7 @@ export let checkValidDate = (date: string) => {
 	let checkDate: number = Date.parse(date);
 	if (checkDate) return true;
 	else {
-		// console.log("date is invalid: ", date);
+		console.log("date is invalid: ", date);
 		// throw Error("date is invalid: " + date)
 		return false;
 	}

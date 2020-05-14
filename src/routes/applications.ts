@@ -11,6 +11,7 @@ import {
 } from "../controllers/applications/appsGet";
 import { checkAppIDInput } from "../middleware/checkPatchAppInput";
 import { checkAuthToken } from "../middleware/checkAuthToken";
+import { checkNewAppValidInput } from "../middleware/checkNewAppInputs";
 
 const applicationRoute = Router();
 
@@ -21,7 +22,7 @@ applicationRoute.get("/upcoming", applications_get_upcoming);
 applicationRoute.post(
 	"/new",
 	checkAuthToken,
-	checkAppValidInput,
+	checkNewAppValidInput,
 	applications_create_new
 );
 

@@ -6,8 +6,10 @@ import {
 	checkValidDate,
 	checkApplicationType,
 } from "../utils/CheckInput";
+import { checkPathInUse } from "../database/checkPaths";
+import { calendarDataPath } from "../database/constants";
 
-export const checkAppValidInput = async (
+export const checkNewAppValidInput = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
@@ -18,9 +20,9 @@ export const checkAppValidInput = async (
 		checkName(req.body.name) &&
 		checkValidDate(req.body.start_date) &&
 		checkValidDate(req.body.end_date) &&
-		(await checkWebsite(req.body.applicationLink)) &&
+		checkWebsite(req.body.applicationLink) &&
 		(await checkApplicationType(req.body.type)) &&
-		(await checkWebsite(req.body.organizationSite))
+		(await checkPathInUse(calendarDataPath, req.body.website_key))
 	) {
 		next();
 	} else {
