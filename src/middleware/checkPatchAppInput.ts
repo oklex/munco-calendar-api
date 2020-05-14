@@ -1,11 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import {
-	checkWebsite
-} from "../utils/CheckInput";
-import { IOrganization } from "../models/CalendarResponse";
 import { checkPathInUse } from "../database/checkPaths";
-import { getApplicationsPath, getApplicationsPathWithKey } from "../database/getPaths";
-import { calendarDataPath, orgApplicationsPath } from "../database/constants";
+import { getApplicationsPathWithKey } from "../database/getPaths";
 
 export const checkAppIDInput = async (req: Request, res: Response, next: NextFunction) => {
 	if (
