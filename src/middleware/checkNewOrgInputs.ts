@@ -18,6 +18,7 @@ export const checkOrgValidInput = async (
 ) => {
 	// check { req.body. {short_name, full_name, organization_type, website, running_since } }
 	// -> create a general purpose checking function that takes in "rules"
+	console.log("checking input at \"checkOrgValidInput\": ", req.body)
 	if (
 		checkName(req.body.short_name) &&
 		checkName(req.body.full_name) &&

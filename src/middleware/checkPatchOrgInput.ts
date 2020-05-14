@@ -7,6 +7,7 @@ import { calendarDataPath } from "../database/constants";
 import { getDomainKey } from "../utils/getDomain";
 
 export const checkOrgKey = async (req: Request, res: Response, next: NextFunction) => {
+	console.log("checking input at \"checkOrgKey\": ", req.body)
 	if (
 		req.params.website_key &&
 		(await checkPathInUse(

@@ -3,6 +3,7 @@ import { checkPathInUse } from "../database/checkPaths";
 import { getApplicationsPathWithKey } from "../database/getPaths";
 
 export const checkAppIDInput = async (req: Request, res: Response, next: NextFunction) => {
+	console.log("checking input at \"checkAppIDInput\": ", req.body)
 	if (
 		req.body.website_key &&
 		(await checkPathInUse(

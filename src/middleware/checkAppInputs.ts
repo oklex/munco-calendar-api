@@ -14,13 +14,14 @@ export const checkAppValidInput = async (
 ) => {
 	// check { req.body. {short_name, full_name, organization_type, website, running_since } }
 	// -> create a general purpose checking function that takes in "rules"
+	console.log("checking input at \"checkAppValidInput\": ", req.body)
 	if (
 		checkName(req.body.name) &&
 		checkValidDate(req.body.start_date) &&
 		checkValidDate(req.body.end_date) &&
-		(await checkWebsite(req.body.applicationLink)) &&
+		checkWebsite(req.body.applicationLink) &&
 		(await checkApplicationType(req.body.type)) &&
-		(await checkWebsite(req.body.organizationSite))
+		checkWebsite(req.body.organizationSite)
 	) {
 		next();
 	} else {

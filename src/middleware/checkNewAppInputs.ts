@@ -16,6 +16,7 @@ export const checkNewAppValidInput = async (
 ) => {
 	// check { req.body. {short_name, full_name, organization_type, website, running_since } }
 	// -> create a general purpose checking function that takes in "rules"
+	console.log("checking input at \"checkNewAppValidInput\": ", req.body)
 	if (
 		checkName(req.body.name) &&
 		checkValidDate(req.body.start_date) &&
