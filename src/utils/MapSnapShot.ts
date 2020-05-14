@@ -54,7 +54,7 @@ export let MapAppArraySnapShot = (appArray: any): IApplication[] => {
 	let apps: IApplication[] = []
 	let keys: string[] = Object.keys(appArray);
 	keys.forEach((key: any) => {
-		console.log("key: ", key, appArray[key])
+		// console.log("key: ", key, appArray[key])
 		apps.push({
 			application_key: key,
 			name: appArray[key].name,
