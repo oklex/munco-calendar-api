@@ -11,7 +11,7 @@ let FirebaseInitialize = () => {
 		appId: process.env.FIREBASE_APP_ID,
 	};
 	try {
-		console.log("initializing FIrebase with: ", config);
+		console.log("initializing Firebase");
 		firebase.initializeApp(config);
 	} catch (err) {
 		throw err;
