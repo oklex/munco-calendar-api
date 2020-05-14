@@ -54,8 +54,8 @@ export const organizations_get_byID = async function (
 		let resApps: IApplication[] = [];
 		let eventApps: IEvent[] = [];
 		if (data.val().applications) {
-			console.log("response data: ", data.val().applications);
-			console.log("response data: ", Object.keys(data.val().applications));
+			// console.log("response data: ", data.val().applications);
+			// console.log("response data: ", Object.keys(data.val().applications));
 			resApps = MapAppArraySnapShot(data.val().applications)
 		}
 		let response: ICalendarResponse = {
