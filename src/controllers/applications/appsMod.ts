@@ -83,7 +83,7 @@ export const applications_delete_byID = async function (
 		// check that the ID exists on the organization key path
 		// make a firebase delete call on the ID
 		await dbDelete(
-			getSingleApplicationPath(req.body.website_key, req.params.appId)
+			getSingleApplicationPathWithKey(req.body.website_key, req.params.appId)
 		)
 			.then(() => {
 				res.send("delete successful");
