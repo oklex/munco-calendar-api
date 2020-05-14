@@ -46,7 +46,8 @@ PATCH /api/applications/:id
 - controller: applications_patch_byID
 
 DELETE /api/applications/:id
-- input: none
+- input: 
+    - req.body.website_key
 - middleware: 
     - checkAppIDInput: checks if ID input is valid
 - controller: applications_delete_byID
