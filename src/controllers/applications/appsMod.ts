@@ -31,6 +31,7 @@ export const applications_create_new = async function (
 ) {
 	// check input (all present)
 	// push to db (new route needed)
+		console.log("running post app", req.body);
 	try {
 		let newApp: IApplication = {
 			name: req.body.name,
@@ -57,8 +58,8 @@ export const applications_patch_byID = async function (
 ) {
 	try {
 		// check that the ID exists on the organization key path
-		let patchObj: IApplicationRequest = MapBodyToAppRequest(req.body)
-		console.log('running patch by id')
+		let patchObj: IApplicationRequest = MapBodyToAppRequest(req.body);
+		console.log("running patch by app id: " + req.params.appId, req.body);
 		await dbUpdate(
 			getSingleApplicationPathWithKey(req.body.website_key, req.params.appId),
 			patchObj
@@ -82,9 +83,13 @@ export const applications_delete_byID = async function (
 	try {
 		// check that the ID exists on the organization key path
 		// make a firebase delete call on the ID
-		await dbDelete(
-			getSingleApplicationPathWithKey(req.body.website_key, req.params.appId)
-		)
+		console.log("deleting app:" + req.params.appId, req.body);
+		let path: string = getSingleApplicationPathWithKey(
+			req.body.website_key,
+			req.params.appId
+		);
+		console.log("at path: " + path);
+		await dbDelete(path)
 			.then(() => {
 				res.send("delete successful");
 			})
