@@ -31,7 +31,7 @@ export const checkAppValidInput = async (
 		// console.log((await checkWebsite(req.body.applicationLink)) )
 		// console.log((await checkApplicationType(req.body.type)) )
 		// console.log((await checkWebsite(req.body.organizationSite)))
-
+		console.log("invalid input fields")
 		res.status(400).send("invalid input fields");
 	}
 };

@@ -17,6 +17,7 @@ export const checkOrgKey = async (req: Request, res: Response, next: NextFunctio
 	) {
 		next()
 	} else {
+		console.log("missing identifying information")
         res.status(400).send("missing identifying information");
     }
 };

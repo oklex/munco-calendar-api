@@ -20,6 +20,7 @@ let FirebaseInitialize = () => {
 };
 
 export let dbGetOnce = async (route: string) => {
+	console.log('Firebase get: ', route)
 	try {
 		return await firebase
 			.database()
@@ -34,6 +35,7 @@ export let dbGetOnce = async (route: string) => {
 };
 
 export let dbSet = async (route: string, obj: any) => {
+	console.log('Firebase set: ', route, obj)
 	try {
 		await firebase.database().ref(route).set(obj);
 	} catch (err) {
@@ -43,6 +45,7 @@ export let dbSet = async (route: string, obj: any) => {
 };
 
 export let dbUpdate = async (route: string, obj: any) => {
+	console.log('Firebase update: ', route, obj)
 	try {
 		await firebase.database().ref(route).update(obj);
 	} catch (err) {
@@ -52,6 +55,7 @@ export let dbUpdate = async (route: string, obj: any) => {
 };
 
 export let dbPush = async (route: string, obj: any) => {
+	console.log('Firebase push: ', route, obj)
 	try {
 		await firebase.database().ref(route).push(obj);
 	} catch (err) {
@@ -61,6 +65,7 @@ export let dbPush = async (route: string, obj: any) => {
 };
 
 export let dbDelete = async (route: string) => {
+	console.log('Firebase delete: ', route)
 	try {
 		await firebase.database().ref(route).remove();
 	} catch (err) {

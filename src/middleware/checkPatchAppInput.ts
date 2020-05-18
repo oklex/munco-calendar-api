@@ -13,6 +13,7 @@ export const checkAppIDInput = async (req: Request, res: Response, next: NextFun
 	) {
 		next()
 	} else {
+		console.log("missing identifying information")
         res.status(400).send("missing identifying information");
     }
 };

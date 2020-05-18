@@ -12,7 +12,7 @@ export let checkPathInUse = async (
 		.then(async (snapshot: any) => {
 			if (snapshot.hasChild(hasKey)) return true
 			else {
-				console.log("can't resolve path", path, hasKey)
+				console.log("path: " + path + "/" + hasKey + " is empty")
 				return false
 			};
 		})

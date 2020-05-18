@@ -27,6 +27,7 @@ export const checkNewAppValidInput = async (
 	) {
 		next();
 	} else {
+		console.log("invalid input fields")
 		res.status(400).send("invalid input fields");
 	}
 };
