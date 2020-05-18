@@ -10,7 +10,8 @@
     "build-linux": "rm -rf dist && npm run build-ts",
     "build-ts": "tsc",
     "test": "mocha -r ts-node/register tests/test.ts --exit",
-    "deploy": "eb deploy"
+    "deploy": "eb deploy",
+    "sync-front-end": "aws s3 sync s3://munco-calendar-manager ./web-build"
   },
   "author": "",
   "license": "ISC",
