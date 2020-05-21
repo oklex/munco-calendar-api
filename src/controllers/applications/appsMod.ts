@@ -1,27 +1,12 @@
-import { Router, Request, Response, NextFunction } from "express";
-import {findLargestAppEndDate} from "../../utils/FindLargestAppEndDate";
+import { Request, Response, NextFunction } from "express";
 import {
-	ICalendarResponse,
-	IApplicationType,
 	IApplication,
 } from "../../models/CalendarResponse";
-import moment from "moment";
-import getCalendarData from "../../utils/GetData";
 import { dbPush, dbUpdate, dbDelete } from "../../database/Firebase";
 import {
-	getApplicationsPath,
-	getOrganizationPathFromWebsite,
-	getSingleApplicationPath,
 	getSingleApplicationPathWithKey,
 	getApplicationsPathWithKey,
 } from "../../database/getPaths";
-import {
-	checkWebsite,
-	checkName,
-	checkValidDate,
-	checkApplicationType,
-} from "../../utils/CheckInput";
-import { checkPathInUse } from "../../database/checkPaths";
 import { IApplicationRequest } from "../../models/CalendarRequests";
 import { MapBodyToAppRequest } from "../../utils/MapBody";
 

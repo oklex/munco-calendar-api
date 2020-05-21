@@ -1,14 +1,6 @@
 import { Request, Response } from "express";
-import firebase from "firebase";
-import { getDomain, getDomainKey } from "../../utils/getDomain";
 import { dbSet, dbUpdate, dbDelete } from "../../database/Firebase";
 import { getOrganizationPathFromWebsite, getOrganizationPath } from "../../database/getPaths";
-import {
-	checkName,
-	checkWebsite,
-	checkOrganizationType,
-	checkValidDate,
-} from "../../utils/CheckInput";
 import { IOrganizationRequest } from "../../models/CalendarRequests";
 import { MapBodyToOrgRequest } from "../../utils/MapBody";
 
