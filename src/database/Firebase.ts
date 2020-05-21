@@ -21,6 +21,7 @@ let FirebaseInitialize = () => {
 
 export let dbGetOnce = async (route: string) => {
 	console.log('Firebase get: ', route)
+	// if (process.env.GITHUB_ACTIONS || process.env.TESTING) return true
 	try {
 		return await firebase
 			.database()
@@ -36,6 +37,7 @@ export let dbGetOnce = async (route: string) => {
 
 export let dbSet = async (route: string, obj: any) => {
 	console.log('Firebase set: ', route, obj)
+	// if (process.env.GITHUB_ACTIONS || process.env.TESTING) return true
 	try {
 		await firebase.database().ref(route).set(obj);
 	} catch (err) {
@@ -46,6 +48,7 @@ export let dbSet = async (route: string, obj: any) => {
 
 export let dbUpdate = async (route: string, obj: any) => {
 	console.log('Firebase update: ', route, obj)
+	// if (process.env.GITHUB_ACTIONS || process.env.TESTING) return true
 	try {
 		await firebase.database().ref(route).update(obj);
 	} catch (err) {
@@ -56,6 +59,7 @@ export let dbUpdate = async (route: string, obj: any) => {
 
 export let dbPush = async (route: string, obj: any) => {
 	console.log('Firebase push: ', route, obj)
+	// if (process.env.GITHUB_ACTIONS || process.env.TESTING) return true
 	try {
 		await firebase.database().ref(route).push(obj);
 	} catch (err) {
@@ -66,6 +70,7 @@ export let dbPush = async (route: string, obj: any) => {
 
 export let dbDelete = async (route: string) => {
 	console.log('Firebase delete: ', route)
+	// if (process.env.GITHUB_ACTIONS || process.env.TESTING) return true
 	try {
 		await firebase.database().ref(route).remove();
 	} catch (err) {
@@ -78,7 +83,8 @@ export let checkPathInUse = async (
 	path: string,
 	hasKey: string
 ): Promise<boolean> => {
-	// console.log("is path null? ", path, hasKey);
+	console.log("is path null? ", path, hasKey);
+	// if (process.env.GITHUB_ACTIONS || process.env.TESTING) check mock data
 	return await firebase
 		.database()
 		.ref(path)
