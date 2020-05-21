@@ -20,12 +20,10 @@ export let checkName = (name: string): boolean => {
 export let checkWebsite = (websiteRaw: string): boolean => {
 	let website: string = websiteRaw.trim()
 	if (website.includes(' ')) {
-		return false
-	} else if (website.includes(".ca") || website.includes(".com") || website.includes(".org") || website.includes(".net") || website.includes(".info") || website.includes(".site") || website.includes(".website") ) {
-		return true;
-	} else {
 		console.log("website is invalid: ", website);
-		return false;
+		return false
+	} else {
+		return true;
 	}
 };
 
@@ -71,8 +69,8 @@ export let checkValidDate = (date: string) => {
 
 export let CheckDateOrder = (start: Date, end: Date) => {
 	if (!checkValidDate(start.toString()) || !checkValidDate(end.toString())) {
-		throw Error ("One or more Dates aren't valid")
-	} 
+		throw Error("One or more Dates aren't valid")
+	}
 	console.log(start, end)
 	let confirmOrder: boolean = moment(start).isBefore(end)
 	// console.log(confirmOrder)
