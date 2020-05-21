@@ -1,6 +1,6 @@
-import { IApplicationRequest, IOrganizationRequest } from "../models/CalendarRequests"
-import { IApplicationType } from "../models/CalendarResponse"
-import { checkName, checkApplicationType, checkValidDate, checkWebsite, checkOrganizationType } from "./CheckInput";
+import { IApplicationRequest, IOrganizationRequest, IEventRequest } from "../models/CalendarRequests"
+import { IApplicationType, IEvent } from "../models/CalendarResponse"
+import { checkName, checkApplicationType, checkValidDate, checkWebsite, checkOrganizationType, CheckDateOrder } from "./CheckInput";
 
 export let MapBodyToAppRequest = (body: any): IApplicationRequest => {
     let appReq: IApplicationRequest = {}
@@ -9,27 +9,71 @@ export let MapBodyToAppRequest = (body: any): IApplicationRequest => {
     if (body.start_date && checkValidDate(body.start_date)) appReq.start_date = body.start_date;
     if (body.end_date && checkValidDate(body.end_date)) appReq.end_date = body.end_date;
     if (body.dates_tentative)
-    appReq.dates_tentative = body.dates_tentative;
+        appReq.dates_tentative = body.dates_tentative;
     if (body.applicationLink && checkWebsite(body.applicationLink))
-    appReq.applicationLink = body.applicationLink;
+        appReq.applicationLink = body.applicationLink;
     if (body.cost) appReq.cost = body.cost;
     return appReq
 }
 
 export let MapBodyToOrgRequest = (body: any): IOrganizationRequest => {
     let orgReq: IOrganizationRequest = {}
-    if (body.short_name && checkName(body.short_name))
-			orgReq.short_name = body.short_name;
-		if (body.full_name && checkName(body.full_name))
-			orgReq.full_name = body.full_name;
-		if (
-			body.organization_type &&
-			checkOrganizationType(body.organization_type)
-		)
-			orgReq.organization_type = body.organization_type;
-		if (body.website && checkWebsite(body.website))
-			orgReq.website = body.website;
-		if (body.running_since && checkValidDate(body.running_since))
-			orgReq.running_since = body.running_since;
+    if (body.short_name && checkName(body.short_name)) {
+        orgReq.short_name = body.short_name;
+    }
+    if (body.full_name && checkName(body.full_name)) {
+        orgReq.full_name = body.full_name;
+    }
+    if (
+        body.organization_type &&
+        checkOrganizationType(body.organization_type)
+    ) {
+        orgReq.organization_type = body.organization_type;
+    }
+    if (body.website && checkWebsite(body.website)) {
+        orgReq.website = body.website;
+    }
+    if (body.running_since && checkValidDate(body.running_since)) {
+        orgReq.running_since = body.running_since;
+    }
     return orgReq
+}
+
+export let MapBodyToEventRequest = async (body: any): Promise<IEventRequest> => {
+    let eventReq: IEventRequest = {}
+    if (body.venue_name && checkName(body.venue_name)) {
+        eventReq.venue_name = body.venue_name
+    }
+    if (body.venue_city && checkName(body.venue_city)) {
+        eventReq.venue_city = body.venue_city
+    }
+    if (body.tags) {
+        let tags: string[] = body.tags.split(',')
+        let validTags: boolean[] = await Promise.all(tags.map((tag) => {
+            return checkName(tag)
+        }))
+        if (validTags.reduce((total, current) => {
+            return total && current
+        })) {
+            eventReq.tags = body.tags
+        }
+    }
+    if (CheckDateOrder(body.start_date, body.end_date)) {
+        eventReq.start_date = body.start_date
+        eventReq.end_date = body.end_date
+    }
+    return eventReq
+}
+
+export let MapBodyToEvent = (body: any): IEvent => {
+    // pre-condition: all attributes have been checked for validity
+    let event: IEvent = {
+        venue_name: body.venue_name,
+        venue_city: body.venue_city,
+        start_date: body.start_date,
+        end_date: body.end_date,
+        dates_tentative: body.dates_tentative ? body.dates_tentative : true,
+        tags: body.tags ? body.tags : [""]
+    }
+    return event
 }
