@@ -1,5 +1,6 @@
 import { IOrganization, IApplication } from "../models/CalendarResponse";
 import app from "../app";
+import moment from "moment";
 
 export let MapOrgSnapshot = (orgObj: any, website_key?: string): IOrganization => {
 	if (
@@ -66,5 +67,30 @@ export let MapAppArraySnapShot = (appArray: any): IApplication[] => {
 			cost: appArray[key].cost
 		})
 	})
+	return apps
+}
+
+
+export let MapAppArraySnapShotIfValid = async (appArray: any): Promise<IApplication[]> => {
+	let apps: IApplication[] = []
+	let keys: string[] = Object.keys(appArray);
+	let currentDate: Date = new Date();
+
+	await Promise.all(keys.map((key: any) => {
+		// console.log("key: ", key, appArray[key])
+		// console.log("dates: ", appArray[key].end_date, currentDate, moment(appArray[key].end_date).isAfter(currentDate))
+		if (moment(appArray[key].end_date).isAfter(currentDate)) {
+			apps.push({
+				application_key: key,
+				name: appArray[key].name,
+				type: appArray[key].type,
+				start_date: appArray[key].start_date,
+				end_date: appArray[key].end_date,
+				dates_tentative: appArray[key].dates_tentative,
+				applicationLink: appArray[key].applicationLink,
+				cost: appArray[key].cost
+			})
+		}
+	}))
 	return apps
 }
