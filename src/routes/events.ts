@@ -1,5 +1,7 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { checkAuthToken } from "../middleware/checkAuthToken";
+import { events_create_new, events_patch, events_delete } from "../controllers/events/eventsMod";
+import { checkEventIDInput } from "../middleware/checkPatchInput";
 const eventsRoute = Router();
 
 eventsRoute.get('/all', (req: Request, res: Response) => {
@@ -10,16 +12,10 @@ eventsRoute.get('/upcoming', (req: Request, res: Response) => {
 	res.send("PROTOTPYE ROUTE: /api/events/upcoming")
 })
 
-eventsRoute.post('/new', checkAuthToken, (req: Request, res: Response) => {
-	res.send("PROTOTPYE ROUTE: /api/events/new")
-})
+eventsRoute.post('/new', checkAuthToken, events_create_new)
 
-eventsRoute.patch('/:id', checkAuthToken, (req: Request, res: Response) => {
-	res.send("PROTOTPYE ROUTE: /api/events/:id")
-})
+eventsRoute.patch('/:eventId', checkAuthToken, checkEventIDInput, events_patch)
 
-eventsRoute.delete('/:id', checkAuthToken, (req: Request, res: Response) => {
-	res.send("PROTOTPYE ROUTE: /api/events/:id")
-})
+eventsRoute.delete('/:eventId', checkAuthToken, checkEventIDInput, events_delete)
 
 export default eventsRoute
