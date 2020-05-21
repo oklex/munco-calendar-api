@@ -1,6 +1,7 @@
-import AllCalendarData from "../data/CalendarData";
-import { MockCalendarData } from "../data/MockData";
+import AllCalendarData from "../Mockdata/CalendarData";
+import { MockCalendarData } from "../Mockdata/MockData";
 
+// this function is now outdated
 const getCalendarData = () => {
 	if (process.env.NODE_ENV == "development" && process.env.AUTH_TOKEN != null) {
 		// console.log("IN DEVELOPMENT: using mock data");
