@@ -2,6 +2,7 @@ import {
 	IOrganizationType,
 	IApplicationType,
 } from "../models/CalendarResponse";
+import moment from "moment";
 
 export let checkName = (name: string): boolean => {
 	if (name) {
@@ -16,21 +17,14 @@ export let checkName = (name: string): boolean => {
 	}
 };
 
-export let checkWebsite = (website: string): boolean => {
-	// check if it's unique (not on Firebase)
-	// check whois
-	if (website) {
+export let checkWebsite = (websiteRaw: string): boolean => {
+	let website: string = websiteRaw.trim()
+	if (website.includes(' ')) {
+		return false
+	} else if (website.includes(".ca") || website.includes(".com") || website.includes(".org") || website.includes(".net") || website.includes(".info") || website.includes(".site") || website.includes(".website") ) {
 		return true;
-		// let whoisResult: boolean = false;
-		// let result: any = await whois.json(website)
-		// if (result) whoisResult = true;
-		// else whoisResult = false;
-		// console.log("during promise: ", whoisResult);
-		// console.log("whois.lookup returns: ", website, result);
-		// return whoisResult;
 	} else {
 		console.log("website is invalid: ", website);
-		// throw Error("website is invalid: " + website)
 		return false;
 	}
 };
@@ -74,3 +68,11 @@ export let checkValidDate = (date: string) => {
 		return false;
 	}
 };
+
+export let CheckDateOrder = (start: Date, end: Date) => {
+	console.log(start, end)
+	let confirmOrder: boolean = moment(start).isBefore(end)
+	// console.log(confirmOrder)
+	return confirmOrder
+}
+
