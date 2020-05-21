@@ -1,6 +1,6 @@
 import { ICalendarResponse } from "../models/CalendarResponse";
 
-function findLargestAppEndDate(alpha: ICalendarResponse) {
+export function findLargestAppEndDate(alpha: ICalendarResponse) {
   let alphaAppDate: Date = new Date();
   // default value is v high
   alphaAppDate.setFullYear(alphaAppDate.getFullYear() + 10);
@@ -17,4 +17,19 @@ function findLargestAppEndDate(alpha: ICalendarResponse) {
   return alphaAppDate;
 }
 
-export default findLargestAppEndDate;
+export function findLargestAppStartDate(alpha: ICalendarResponse) {
+  let alphaAppDate: Date = new Date();
+  // default value is v high
+  alphaAppDate.setFullYear(alphaAppDate.getFullYear() + 10);
+  if (alpha.applications && alpha.applications.length > 0) {
+    // select the largest
+    alpha.applications.forEach((app, index) => {
+      if (index == 0) {
+        alphaAppDate = app.start_date;
+      } else if (app.start_date < alphaAppDate) {
+        alphaAppDate = app.start_date;
+      }
+    });
+  }
+  return alphaAppDate;
+}

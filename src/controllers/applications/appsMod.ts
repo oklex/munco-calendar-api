@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from "express";
-import findLargestAppEndDate from "../../utils/FindLargestAppEndDate";
+import {findLargestAppEndDate} from "../../utils/FindLargestAppEndDate";
 import {
 	ICalendarResponse,
 	IApplicationType,
