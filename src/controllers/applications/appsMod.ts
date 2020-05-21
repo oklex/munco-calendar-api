@@ -8,7 +8,7 @@ import {
 	getApplicationsPathWithKey,
 } from "../../database/getPaths";
 import { IApplicationRequest } from "../../models/CalendarRequests";
-import { MapBodyToAppRequest } from "../../utils/MapBody";
+import { MapBodyToAppRequest, MapBodyToApp } from "../../utils/MapBody";
 
 export const applications_create_new = async function (
 	req: Request,
@@ -18,15 +18,7 @@ export const applications_create_new = async function (
 	// push to db (new route needed)
 		console.log("running post app", req.body);
 	try {
-		let newApp: IApplication = {
-			name: req.body.name,
-			type: req.body.type,
-			start_date: req.body.start_date,
-			end_date: req.body.end_date,
-			dates_tentative: false,
-			applicationLink: req.body.applicationLink,
-			cost: null,
-		};
+		let newApp: IApplication = MapBodyToApp(req.body)
 		await dbPush(getApplicationsPathWithKey(req.body.website_key), newApp).then(
 			() => {
 				res.send("post successful");
