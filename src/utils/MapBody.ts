@@ -1,6 +1,23 @@
 import { IApplicationRequest, IOrganizationRequest, IEventRequest } from "../models/CalendarRequests"
-import { IApplicationType, IEvent } from "../models/CalendarResponse"
+import { IApplicationType, IEvent, IApplication } from "../models/CalendarResponse"
 import { checkName, checkApplicationType, checkValidDate, checkWebsite, checkOrganizationType, CheckDateOrder } from "./CheckInput";
+import moment, { Moment } from "moment";
+
+export let MapBodyToApp = (body:any): IApplication => {
+    // pre-condition all attributes must be real and valid
+    let startDate: Date = moment(body.start_date).endOf('day').toDate()
+    let endDate: Date = moment(body.end_date).endOf('day').toDate()
+    let newApp: IApplication = {
+        name: body.name,
+        type: body.type,
+        start_date: startDate,
+        end_date: endDate,
+        dates_tentative: false,
+        applicationLink: body.applicationLink,
+        cost: 0,
+    };
+    return newApp
+}
 
 export let MapBodyToAppRequest = (body: any): IApplicationRequest => {
     let appReq: IApplicationRequest = {}
