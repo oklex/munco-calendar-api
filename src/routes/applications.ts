@@ -9,7 +9,7 @@ import {
 	applications_get_all,
 	applications_get_upcoming,
 } from "../controllers/applications/appsGet";
-import { checkAppIDInput } from "../middleware/checkPatchAppInput";
+import { checkAppIDInput } from "../middleware/checkPatchInput";
 import { checkAuthToken } from "../middleware/checkAuthToken";
 import { checkNewAppValidInput } from "../middleware/checkNewAppInputs";
 
