@@ -7,7 +7,7 @@ import {
     checkApplicationType,
     CheckDateOrder,
 } from "../utils/CheckInput";
-import { checkPathInUse } from "../database/checkPaths";
+import { checkPathInUse } from "../database/Firebase";
 
 export const checkNewEventValidInput = async (
     req: Request,

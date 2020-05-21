@@ -74,4 +74,22 @@ export let dbDelete = async (route: string) => {
 	}
 };
 
+export let checkPathInUse = async (
+	path: string,
+	hasKey: string
+): Promise<boolean> => {
+	// console.log("is path null? ", path, hasKey);
+	return await firebase
+		.database()
+		.ref(path)
+		.once("value")
+		.then(async (snapshot: any) => {
+			if (snapshot.hasChild(hasKey)) return true
+			else {
+				console.log("path: " + path + "/" + hasKey + " is empty")
+				return false
+			};
+		})
+};
+
 export default FirebaseInitialize;

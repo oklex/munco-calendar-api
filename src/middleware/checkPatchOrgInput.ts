@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import {
 	checkWebsite
 } from "../utils/CheckInput";
-import { checkPathInUse } from "../database/checkPaths";
+import { checkPathInUse } from "../database/Firebase";
 import { calendarDataPath } from "../database/constants";
 import { getDomainKey } from "../utils/getDomain";
 

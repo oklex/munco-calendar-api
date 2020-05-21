@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { checkPathInUse } from "../database/checkPaths";
+import { checkPathInUse } from "../database/Firebase";
 import { getApplicationsPathWithKey, getSingleEventsPathWithKey, getEventsPathWithKey } from "../database/getPaths";
 
 export const checkAppIDInput = async (req: Request, res: Response, next: NextFunction) => {

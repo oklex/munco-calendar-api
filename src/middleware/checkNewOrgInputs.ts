@@ -6,7 +6,7 @@ import {
 	checkValidDate,
 } from "../utils/CheckInput";
 import { IOrganization } from "../models/CalendarResponse";
-import { checkPathInUse } from "../database/checkPaths";
+import { checkPathInUse } from "../database/Firebase";
 import { getOrganizationPathFromWebsite } from "../database/getPaths";
 import { calendarDataPath } from "../database/constants";
 import { getDomainKey } from "../utils/getDomain";
