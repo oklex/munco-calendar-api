@@ -3,7 +3,7 @@ import { checkPathInUse } from "../database/Firebase";
 import { getApplicationsPathWithKey, getSingleEventsPathWithKey, getEventsPathWithKey } from "../database/getPaths";
 
 export const checkAppIDInput = async (req: Request, res: Response, next: NextFunction) => {
-	console.log("checking input at \"checkAppIDInput\": ", req.body)
+	console.log("checking input at \"checkAppIDInput\": ", req.body, req.params.appId)
 	if (
 		req.body.website_key &&
 		(await checkPathInUse(
@@ -19,7 +19,7 @@ export const checkAppIDInput = async (req: Request, res: Response, next: NextFun
 };
 
 export const checkEventIDInput = async (req: Request, res: Response, next: NextFunction) => {
-	console.log("checking input at \"checkAppIDInput\": ", req.body)
+	console.log("checking input at \"checkAppIDInput\": ", req.body, req.params.eventId)
 	if (
 		req.body.website_key &&
 		(await checkPathInUse(
