@@ -1,7 +1,6 @@
 const configService = ():any => {
     if (process.env.NODE_ENV.toUpperCase().trim() === 'DEVELOPMENT') {
-        console.log("Firebase configured for DEVELOPMENT")
-        return {
+        let config: any = {
             apiKey: process.env.TEST_FIREBASE_API_KEY,
             authDomain: process.env.TEST_FIREBASE_AUTH_DOMAIN,
             databaseURL: process.env.TEST_FIREBASE_DATABASE_URL,
@@ -10,9 +9,10 @@ const configService = ():any => {
             messagingSenderId: process.env.TEST_FIREBASE_SENDER_ID,
             appId: process.env.TEST_FIREBASE_APP_ID,
         };
+        console.log("Firebase configured for DEVELOPMENT ", config)
+        return config
     } else if (process.env.GITHUB_ACTIONS.toUpperCase().trim() === "true") { 
-        console.log("Firebase configured for GITHUB ACTIONS")
-        return {
+        let config: any = {
             apiKey: process.env.TEST_FIREBASE_API_KEY,
             authDomain: process.env.TEST_FIREBASE_AUTH_DOMAIN,
             databaseURL: process.env.TEST_FIREBASE_DATABASE_URL,
@@ -21,6 +21,8 @@ const configService = ():any => {
             messagingSenderId: process.env.TEST_FIREBASE_SENDER_ID,
             appId: process.env.TEST_FIREBASE_APP_ID,
         };
+        console.log("Firebase configured for DEVELOPMENT ", config)
+        return config
     } else if (process.env.NODE_ENV.toUpperCase().trim() === 'PRODUCTION') {
         console.log("Firebase configured for PRODUCTION")
         return {
