@@ -3,11 +3,18 @@ import "mocha";
 import { applicationsGetTests } from "./applications/getTests";
 import { applicationsPostTests } from "./applications/postTests";
 import { organizationPostTests } from "./organizations/postTests";
+import InitializeDatabase from "../src/database/Firebase";
 
-if (process.env.NODE_ENV || process.env.GITHUB_ACTIONS) {
-    applicationsGetTests();
-    applicationsPostTests();
-    organizationPostTests()
-} else {
-    throw Error("Error: NODE_ENV not found")
+// use mocha programmatically 
+function main() {
+	if (process.env.NODE_ENV || process.env.GITHUB_ACTIONS) {
+		InitializeDatabase();
+		applicationsGetTests();
+		applicationsPostTests();
+		organizationPostTests();
+	} else {
+		throw Error("Error: NODE_ENV not found");
+	}
 }
+
+main();
