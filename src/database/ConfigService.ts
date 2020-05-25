@@ -9,7 +9,7 @@ const configService = ():any => {
             messagingSenderId: process.env.TEST_FIREBASE_SENDER_ID,
             appId: process.env.TEST_FIREBASE_APP_ID,
         };
-        console.log("Firebase configured for DEVELOPMENT ", config)
+        console.log("Firebase configured for DEVELOPMENT ")
         return config
     } else if (process.env.GITHUB_ACTIONS.toUpperCase().trim() === "true") { 
         let config: any = {
@@ -21,7 +21,7 @@ const configService = ():any => {
             messagingSenderId: process.env.TEST_FIREBASE_SENDER_ID,
             appId: process.env.TEST_FIREBASE_APP_ID,
         };
-        console.log("Firebase configured for DEVELOPMENT ", config)
+        console.log("Firebase configured for DEVELOPMENT ")
         return config
     } else if (process.env.NODE_ENV.toUpperCase().trim() === 'PRODUCTION') {
         console.log("Firebase configured for PRODUCTION")
