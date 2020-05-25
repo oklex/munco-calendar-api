@@ -4,10 +4,10 @@ import configService from "./ConfigService";
 let FirebaseInitialize = async () => {
 	let config: any = configService();
 	try {
-		console.log("initializing Firebase");
 		firebase.initializeApp(config);
+		console.log("initialized Firebase");
 		var connectedRef = firebase.database().ref(".info/connected");
-		connectedRef.on("value", function (snap) {
+		connectedRef.on("value", function (snap: any) {
 			if (snap.val() === true) {
 				console.log("connected");
 			} else {
@@ -15,6 +15,7 @@ let FirebaseInitialize = async () => {
 			}
 		});
 	} catch (err) {
+		console.log("Firebase initialization failed");
 		throw err;
 	}
 	return config;
