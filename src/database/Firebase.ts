@@ -1,18 +1,19 @@
 import firebase from "firebase";
+import configService from "./ConfigService";
 
-let FirebaseInitialize = () => {
-	let config: any = {
-		apiKey: process.env.FIREBASE_API_KEY,
-		authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-		databaseURL: process.env.FIREBASE_DATABASE_URL,
-		projectId: process.env.FIREBASE_PROJECT_ID,
-		storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-		messagingSenderId: process.env.FIREBASE_SENDER_ID,
-		appId: process.env.FIREBASE_APP_ID,
-	};
+let FirebaseInitialize = async () => {
+	let config: any = configService();
 	try {
 		console.log("initializing Firebase");
 		firebase.initializeApp(config);
+		var connectedRef = firebase.database().ref(".info/connected");
+		connectedRef.on("value", function (snap) {
+			if (snap.val() === true) {
+				console.log("connected");
+			} else {
+				console.log("not connected");
+			}
+		});
 	} catch (err) {
 		throw err;
 	}
@@ -20,8 +21,7 @@ let FirebaseInitialize = () => {
 };
 
 export let dbGetOnce = async (route: string) => {
-	console.log('Firebase get: ', route)
-	// if (process.env.GITHUB_ACTIONS || process.env.TESTING) return true
+	console.log("Firebase get: ", route);
 	try {
 		return await firebase
 			.database()
@@ -36,8 +36,7 @@ export let dbGetOnce = async (route: string) => {
 };
 
 export let dbSet = async (route: string, obj: any) => {
-	console.log('Firebase set: ', route, obj)
-	// if (process.env.GITHUB_ACTIONS || process.env.TESTING) return true
+	console.log("Firebase set: ", route, obj);
 	try {
 		await firebase.database().ref(route).set(obj);
 	} catch (err) {
@@ -47,8 +46,7 @@ export let dbSet = async (route: string, obj: any) => {
 };
 
 export let dbUpdate = async (route: string, obj: any) => {
-	console.log('Firebase update: ', route, obj)
-	// if (process.env.GITHUB_ACTIONS || process.env.TESTING) return true
+	console.log("Firebase update: ", route, obj);
 	try {
 		await firebase.database().ref(route).update(obj);
 	} catch (err) {
@@ -58,8 +56,7 @@ export let dbUpdate = async (route: string, obj: any) => {
 };
 
 export let dbPush = async (route: string, obj: any) => {
-	console.log('Firebase push: ', route, obj)
-	// if (process.env.GITHUB_ACTIONS || process.env.TESTING) return true
+	console.log("Firebase push: ", route, obj);
 	try {
 		await firebase.database().ref(route).push(obj);
 	} catch (err) {
@@ -69,8 +66,7 @@ export let dbPush = async (route: string, obj: any) => {
 };
 
 export let dbDelete = async (route: string) => {
-	console.log('Firebase delete: ', route)
-	// if (process.env.GITHUB_ACTIONS || process.env.TESTING) return true
+	console.log("Firebase delete: ", route);
 	try {
 		await firebase.database().ref(route).remove();
 	} catch (err) {
@@ -84,18 +80,17 @@ export let checkPathInUse = async (
 	hasKey: string
 ): Promise<boolean> => {
 	console.log("is path null? ", path, hasKey);
-	// if (process.env.GITHUB_ACTIONS || process.env.TESTING) check mock data
 	return await firebase
 		.database()
 		.ref(path)
 		.once("value")
 		.then(async (snapshot: any) => {
-			if (snapshot.hasChild(hasKey)) return true
+			if (snapshot.hasChild(hasKey)) return true;
 			else {
-				console.log("path: " + path + "/" + hasKey + " is empty")
-				return false
-			};
-		})
+				console.log("path: " + path + "/" + hasKey + " is empty");
+				return false;
+			}
+		});
 };
 
 export default FirebaseInitialize;
