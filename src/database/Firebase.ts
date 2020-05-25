@@ -1,7 +1,7 @@
 import firebase from "firebase";
 import configService from "./ConfigService";
 
-let FirebaseInitialize = async () => {
+let FirebaseInitialize = () => {
 	let config: any = configService();
 	try {
 		firebase.initializeApp(config);
