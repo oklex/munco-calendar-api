@@ -1,15 +1,11 @@
-import { Router, Request, Response, NextFunction } from "express";
-import {findLargestAppEndDate, findLargestAppStartDate } from "../../utils/FindLargestAppEndDate";
+import {  Request, Response } from "express";
+import { findLargestAppStartDate } from "../../utils/FindLargestAppEndDate";
 import {
 	ICalendarResponse,
-	IApplicationType,
 	IApplication,
-	IOrganization,
 } from "../../models/CalendarResponse";
-import moment from "moment";
-import getCalendarData from "../../utils/GetData";
-import { dbPush, dbGetOnce } from "../../database/Firebase";
-import { getApplicationsPath, getOrganizationPath } from "../../database/getPaths";
+import {  dbGetOnce } from "../../database/Firebase";
+import { getOrganizationPath } from "../../database/getPaths";
 import { MapOrgSnapshot, MapAppArraySnapShot, MapAppArraySnapShotIfValid } from "../../utils/MapSnapShot";
 
 // get all
