@@ -4,7 +4,8 @@ import request from "supertest";
 import app from "../../src/app";
 import { checkAppValidInput } from "../../src/middleware/checkAppInputs";
 import { Request, Response, NextFunction } from "express";
-import { checkAppIDInput } from "../../src/middleware/checkPatchAppInput";
+import { checkAppIDInput } from "../../src/middleware/checkPatchInput";
+import InitializeDatabase from "../../src/database/Firebase";
 
 export function applicationsPostTests() {
 	return describe("Tests for POST and PATCH for applications", () => {
@@ -115,28 +116,28 @@ export function applicationsPostTests() {
 					.expect(400, done);
 			});
 			it("should not work if website key doesn't exist", (done) => {
-				app.patch("/test:id", checkAppIDInput, (req: Request, res: Response) => {
+				app.patch("/test/:appId", checkAppIDInput, (req: Request, res: Response) => {
 					res.status(200).send("success");
 				});
 				request(app)
-					.patch("/test/some_code")
+					.patch("/test/some_value")
 					.send({
 						type: "Secretariat",
 					})
 					.expect(400, done);
 			});
-			it("should work if website key exists", (done) => {
-				app.patch("/test:id", checkAppIDInput, (req: Request, res: Response) => {
-					res.status(200).send("success");
-				});
-				request(app)
-					.patch("/test/some_code")
-					.send({
-						website_key: "munco.ca",
-						type: "Secretariat",
-					})
-					.expect(200, done);
-			});
+			// it("should work if website key exists", (done) => {
+			// 	app.patch("/test/:appId", checkAppIDInput, (req: Request, res: Response) => {
+			// 		res.status(200).send("success");
+			// 	});
+			// 	request(app)
+			// 		.patch("/test/some_code")
+			// 		.send({
+			// 			website_key: "munco.ca",
+			// 			type: "Secretariat",
+			// 		})
+			// 		.expect(200, done);
+			// });
 		});
 	});
 }
