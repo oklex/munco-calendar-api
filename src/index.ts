@@ -1,11 +1,11 @@
 const dotenv = require("dotenv").config(); // required for process.env
 import app from "./app";
-import FirebaseInitialize from "./database/Firebase";
+import InitializeDatabase from "./database/Firebase";
 
 const port = process.env.PORT || 8081;
 
 try {
-	FirebaseInitialize();
+	InitializeDatabase();
 } catch (err) {
 	console.log(err);
 	throw err;

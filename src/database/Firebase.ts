@@ -1,10 +1,16 @@
 import firebase from "firebase";
 import configService from "./ConfigService";
 
-let FirebaseInitialize = () => {
+let FirebaseInitialize = (config: any) => {
+	return new Promise((resolve, reject) => {
+		firebase.initializeApp(config);
+	})
+}
+
+let InitializeDatabase = async () => {
 	let config: any = configService();
 	try {
-		firebase.initializeApp(config);
+		await FirebaseInitialize(config)
 		console.log("initialized Firebase");
 		var connectedRef = firebase.database().ref(".info/connected");
 		connectedRef.on("value", function (snap: any) {
@@ -94,4 +100,4 @@ export let checkPathInUse = async (
 		});
 };
 
-export default FirebaseInitialize;
+export default InitializeDatabase;
