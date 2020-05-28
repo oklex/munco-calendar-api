@@ -1,5 +1,7 @@
 const configService = ():any => {
-    if (process.env.NODE_ENV.toUpperCase().trim() === 'DEVELOPMENT') {
+    if (!process.env.NODE_ENV) {
+        throw Error("NODE_ENV not found")
+    } if (process.env.NODE_ENV.toUpperCase().trim() === 'DEVELOPMENT') {
         let config: any = {
             apiKey: process.env.TEST_FIREBASE_API_KEY,
             authDomain: process.env.TEST_FIREBASE_AUTH_DOMAIN,
