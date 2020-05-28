@@ -1,5 +1,5 @@
 const configService = ():any => {
-    if (!process.env.NODE_ENV) {
+    if (process.env.NODE_ENV === undefined) {
         throw Error("NODE_ENV not found")
     } if (process.env.NODE_ENV.toUpperCase().trim() === 'DEVELOPMENT') {
         let config: any = {
