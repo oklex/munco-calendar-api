@@ -10,7 +10,7 @@ let FirebaseInitialize = (config: any) => {
 let InitializeDatabase = async () => {
 	let config: any = configService();
 	try {
-		await FirebaseInitialize(config)
+		await FirebaseInitialize(config).catch((err) => {throw err})
 		console.log("initialized Firebase");
 		var connectedRef = firebase.database().ref(".info/connected");
 		connectedRef.on("value", function (snap: any) {
