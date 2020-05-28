@@ -11,7 +11,7 @@ const configService = ():any => {
         };
         console.log("Firebase configured for DEVELOPMENT ")
         return config
-    } else if (process.env.GITHUB_ACTIONS.toUpperCase().trim() === "true") { 
+    } else if (process.env.GITHUB_ACTIONS && process.env.GITHUB_ACTIONS.toUpperCase().trim() === "true") { 
         let config: any = {
             apiKey: process.env.TEST_FIREBASE_API_KEY,
             authDomain: process.env.TEST_FIREBASE_AUTH_DOMAIN,
@@ -23,7 +23,7 @@ const configService = ():any => {
         };
         console.log("Firebase configured for DEVELOPMENT ")
         return config
-    } else if (process.env.NPM_USE_PRODUCTION || process.env.NODE_ENV.toUpperCase().trim() === 'PRODUCTION') {
+    } else if (process.env.NODE_ENV && process.env.NODE_ENV.toUpperCase().trim() === 'PRODUCTION') {
         console.log("Firebase configured for PRODUCTION")
         return {
             apiKey: process.env.FIREBASE_API_KEY,
