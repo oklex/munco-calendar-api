@@ -5,8 +5,8 @@ import moment, { Moment } from "moment";
 
 export let MapBodyToApp = (body:any): IApplication => {
     // pre-condition all attributes must be real and valid
-    let startDate: Date = moment(body.start_date).endOf('day').toDate()
-    let endDate: Date = moment(body.end_date).endOf('day').toDate()
+    let startDate: Date = body.start_date
+    let endDate: Date = body.end_date
     let newApp: IApplication = {
         name: body.name,
         type: body.type,
