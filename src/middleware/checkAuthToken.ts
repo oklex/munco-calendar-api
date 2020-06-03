@@ -17,11 +17,11 @@ export const checkAuthToken = async (
 		) {
 			next();
 		} else {
-			console.log('invalid authorization')
-			res.status(401).send("not authorized");
+			console.log('invalid authorization token')
+			res.status(401).send("request not authorized");
 		}
 	} catch (err) {
-		console.log('invalid authorization')
-		res.status(500).send("couldn't verify authorization");
+		console.log('invalid authorization token')
+		res.status(500).send("couldn't verify request authorization code");
 	}
 };
