@@ -4,14 +4,16 @@ import configService from "./ConfigService";
 let FirebaseInitialize = (config: any) => {
 	return new Promise((resolve, reject) => {
 		firebase.initializeApp(config);
-	})
-}
+	});
+};
 
 let InitializeDatabase = async () => {
 	let config: any = configService();
 	try {
-		await FirebaseInitialize(config).catch((err) => {throw err})
-		console.log("initialized Firebase");
+		FirebaseInitialize(config).catch((err) => {
+			throw err;
+		});
+		InitializeFirebaseUser();
 		var connectedRef = firebase.database().ref(".info/connected");
 		connectedRef.on("value", function (snap: any) {
 			if (snap.val() === true) {
@@ -25,6 +27,29 @@ let InitializeDatabase = async () => {
 		throw err;
 	}
 	return config;
+};
+
+export let InitializeFirebaseUser = async () => {
+	firebase
+		.auth()
+		.signInWithEmailAndPassword(
+			process.env.ADMIN_USERNAME,
+			process.env.ADMIN_PASSWORD
+		)
+		.then(() => {
+			console.log("authenticated ", firebase.auth().currentUser.uid);
+			firebase.auth().onAuthStateChanged((user) => {
+				if (user) {
+					console.log("App is signed in");
+				} else {
+					console.log("App is not signed in");
+				}
+			});
+		})
+		.catch((err) => {
+			console.log(err);
+			throw err;
+		});
 };
 
 export let dbGetOnce = async (route: string) => {
