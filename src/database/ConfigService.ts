@@ -11,7 +11,7 @@ const configService = ():any => {
         };
         console.log("Firebase configured for DEVELOPMENT ")
         return config
-    } else if (process.env.GITHUB_ACTIONS && process.env.GITHUB_ACTIONS.toUpperCase().trim() === "true") { 
+    } else if (process.env.GITHUB_ACTIONS) { 
         let config: any = {
             apiKey: process.env.TEST_FIREBASE_API_KEY,
             authDomain: process.env.TEST_FIREBASE_AUTH_DOMAIN,
