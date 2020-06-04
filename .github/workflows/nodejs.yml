@@ -11,7 +11,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -24,5 +23,16 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+
     - run: npm ci
     - run: npm test
+      env:
+        TEST_FIREBASE_API_KEY: ${{ secrets.TEST_FIREBASE_API_KEY }}
+        TEST_FIREBASE_AUTH_DOMAIN: ${{ secrets.TEST_FIREBASE_AUTH_DOMAIN }}
+        TEST_FIREBASE_DATABASE_URL: ${{ secrets.TEST_FIREBASE_DATABASE_URL }}
+        TEST_FIREBASE_PROJECT_ID: ${{ secrets.TEST_FIREBASE_PROJECT_ID }}
+        TEST_FIREBASE_STORAGE_BUCKET: ${{ secrets.TEST_FIREBASE_STORAGE_BUCKET }}
+        TEST_FIREBASE_SENDER_ID: ${{ secrets.TEST_FIREBASE_SENDER_ID }}
+        TEST_FIREBASE_APP_ID: ${{ secrets.TEST_FIREBASE_APP_ID }}
+        
+    
