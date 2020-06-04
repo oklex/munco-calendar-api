@@ -1,16 +1,9 @@
-this is the readme file
+# MUNCO Calendar API
+This api organizes organization, event, and application data for Model UN organizations aroudn Vancouver, BC. 
+
 # Todo
-[x] Refactor input checking middleware to be individaully testable
 
-[ ] Implement GET route for /organizations/:id ? include={apps, events, all}
-
-[ ] Refactor to make definitions of 'website_key' consistent
-
-[x] Refactor request object creation into testable utils
-
-[ ] Refactor error messages to be more meaningful in middleware
-
-[ ] Implement '/api/events/' routes
+[ ] Implement '/api/events/' GET routes
 
 [ ] Prototype a notification system
 
