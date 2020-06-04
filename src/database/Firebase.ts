@@ -1,18 +1,10 @@
 import firebase from "firebase";
 import configService from "./ConfigService";
 
-let FirebaseInitialize = (config: any) => {
-	return new Promise((resolve, reject) => {
-		firebase.initializeApp(config);
-	});
-};
-
-let InitializeDatabase = async () => {
+let InitializeDatabase = () => {
 	let config: any = configService();
 	try {
-		FirebaseInitialize(config).catch((err) => {
-			throw err;
-		});
+		firebase.initializeApp(config);
 		InitializeFirebaseUser();
 		var connectedRef = firebase.database().ref(".info/connected");
 		connectedRef.on("value", function (snap: any) {
