@@ -8,6 +8,7 @@ notificationsRoute.post('/register', async (req: Request, res: Response) => {
         if (req.body.fcmToken) {
             let success: boolean = await saveFCMToken(req.body.fcmToken)
             if (success) {
+                console.log('fcm token registration success')
                 res.send("success")
             } else {
                 throw new Error("couldn't connect to Database")
@@ -16,7 +17,7 @@ notificationsRoute.post('/register', async (req: Request, res: Response) => {
             throw new Error("no fcm token in body")
         }
     } catch (err) {
-        console.log(err)
+        console.log("fcm token registration failed: ", err)
         res.status(400).send(err.message)
     }
 })
@@ -25,7 +26,7 @@ notificationsRoute.get('/check', async (req: Request, res: Response) => {
     try {
         if (req.body.fcmToken) {
             let settings: any = await checkFCMToken(req.body.fcmToken)
-            console.log("device settings", settings)
+                console.log("device settings", settings)
             if (settings) {
                 res.send({ "settings": settings })
             } else {
@@ -35,7 +36,7 @@ notificationsRoute.get('/check', async (req: Request, res: Response) => {
             throw new Error("no fcm token in body")
         }
     } catch (err) {
-        console.log(err)
+        console.log("check for fcm token failed", err)
         res.status(400).send(err.message)
     }
 })
