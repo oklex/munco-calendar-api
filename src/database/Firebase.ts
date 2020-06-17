@@ -1,5 +1,6 @@
 import firebase from "firebase";
 import configService from "./ConfigService";
+import { getfcmTokenPath } from "./getPaths";
 
 let InitializeDatabase = () => {
 	let config: any = configService();
@@ -117,14 +118,27 @@ export let checkPathInUse = async (
 		});
 };
 
-export let saveFCMToken = (fcmToken: string) => {
-	let fcmTokenPath = "/notifications/devices/"
-	return firebase.database().ref(fcmTokenPath).set({
+export let saveFCMToken = async (fcmToken: string): Promise<boolean> => {
+	let returnVal: boolean = await firebase.database().ref(getfcmTokenPath()).set({
 		fcmToken: true
-	}).then(() => {return true}).catch((err) => {
+	}).then(() => { return true }).catch((err) => {
 		console.log(err);
 		return false
 	})
+	return returnVal
+}
+
+export let checkFCMToken = async (fcmToken: string): Promise<any> => {
+	console.log('checkFCMToken() ')
+	let returnVal: any = await firebase.database().ref(getfcmTokenPath(fcmToken)).once('value').then((snapshot: any) => {
+		console.log('checkFCMTOken() . then ()', snapshot.val())
+		if (snapshot.val()) {
+			return snapshot.val()
+		} else {
+			return false
+		}
+	})
+	return returnVal
 }
 
 export default InitializeDatabase;
