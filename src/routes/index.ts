@@ -6,6 +6,7 @@ import {
 import applicationRoute from "./applications";
 import organizationRoute from "./organizations"
 import eventsRoute from "./events";
+import notificationsRoute from "./notifications";
 
 const api = Router();
 
@@ -16,6 +17,6 @@ api.get("/", (req: Request, res: Response) => {
 api.use('/applications', applicationRoute)
 api.use('/organizations', organizationRoute)
 api.use('/events', eventsRoute)
-
+api.use('/notifications', notificationsRoute)
 
 export default api;
