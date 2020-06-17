@@ -22,15 +22,15 @@ notificationsRoute.post('/register', async (req: Request, res: Response) => {
     }
 })
 
-notificationsRoute.get('/check', async (req: Request, res: Response) => {
+notificationsRoute.post('/check', async (req: Request, res: Response) => {
     try {
         if (req.body.fcmToken) {
             let settings: any = await checkFCMToken(req.body.fcmToken)
-                console.log("device settings", settings)
+            console.log("device settings", settings)
             if (settings) {
                 res.send({ "settings": settings })
             } else {
-                throw new Error("no device found")
+                res.send("no device found")
             }
         } else {
             throw new Error("no fcm token in body")
