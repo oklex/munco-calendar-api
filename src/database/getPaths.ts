@@ -33,3 +33,9 @@ export let getEventsPathWithKey = (website_key: string) => {
 export let getSingleEventsPathWithKey = (website_key: string, eventKey: string) => {
     return calendarDataPath + "/" + website_key + orgEventsPath + "/" + eventKey
 }
+
+export let getfcmTokenPath = (token?: string) => {
+    if (token) {
+        return "/notifications/devices/" + token
+    } else { return "/notifications/devices/" }
+}
