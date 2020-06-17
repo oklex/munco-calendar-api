@@ -119,9 +119,9 @@ export let checkPathInUse = async (
 };
 
 export let saveFCMToken = async (fcmToken: string): Promise<boolean> => {
-	let returnVal: boolean = await firebase.database().ref(getfcmTokenPath()).set({
-		fcmToken: true
-	}).then(() => { return true }).catch((err) => {
+	let returnVal: boolean = await firebase.database().ref(getfcmTokenPath()).child(fcmToken).set(
+		true
+	).then(() => { return true }).catch((err) => {
 		console.log(err);
 		return false
 	})
@@ -131,7 +131,6 @@ export let saveFCMToken = async (fcmToken: string): Promise<boolean> => {
 export let checkFCMToken = async (fcmToken: string): Promise<any> => {
 	console.log('checkFCMToken() ')
 	let returnVal: any = await firebase.database().ref(getfcmTokenPath(fcmToken)).once('value').then((snapshot: any) => {
-		console.log('checkFCMTOken() . then ()', snapshot.val())
 		if (snapshot.val()) {
 			return snapshot.val()
 		} else {
