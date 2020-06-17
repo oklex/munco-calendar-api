@@ -117,4 +117,14 @@ export let checkPathInUse = async (
 		});
 };
 
+export let saveFCMToken = (fcmToken: string) => {
+	let fcmTokenPath = "/notifications/devices/"
+	return firebase.database().ref(fcmTokenPath).set({
+		fcmToken: true
+	}).then(() => {return true}).catch((err) => {
+		console.log(err);
+		return false
+	})
+}
+
 export default InitializeDatabase;
