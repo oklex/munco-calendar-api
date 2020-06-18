@@ -149,6 +149,7 @@ export let checkPathInUse = async (
 };
 
 export let saveFCMToken = async (fcmToken: string): Promise<boolean> => {
+	if (fcmToken === "") throw Error('empty token')
 	let returnVal: boolean = await firebase.database().ref(getfcmTokenPath()).child(fcmToken).set(
 		true
 	).then(async () => {
@@ -169,6 +170,7 @@ export let saveFCMToken = async (fcmToken: string): Promise<boolean> => {
 }
 
 export let checkFCMToken = async (fcmToken: string): Promise<any> => {
+	if (fcmToken === "") throw Error('empty token')
 	console.log('checkFCMToken() ')
 	let returnVal: any = await firebase.database().ref(getfcmTokenPath(fcmToken)).once('value').then((snapshot: any) => {
 		if (snapshot.val()) {
@@ -178,6 +180,12 @@ export let checkFCMToken = async (fcmToken: string): Promise<any> => {
 		}
 	})
 	return returnVal
+}
+
+export let deleteFCMToken = async (fcmToken: string): Promise<any> => {
+	if (fcmToken === "") throw Error('empty token')
+	console.log('deleteFCMToken() ')
+	return await firebase.database().ref(getfcmTokenPath(fcmToken)).remove()
 }
 
 export default InitializeDatabase;
