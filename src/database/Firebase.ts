@@ -1,12 +1,16 @@
 import firebase from "firebase";
+var admin = require("firebase-admin");
 import configService from "./ConfigService";
 import { getfcmTokenPath } from "./getPaths";
+import FirebaseSendMessage from "./AdminMessaging";
+import { IMPayload } from "../models/Messaging";
 
 let InitializeDatabase = () => {
 	let config: any = configService();
 	try {
 		firebase.initializeApp(config);
 		InitializeFirebaseUser();
+		initializeFirebaseAdmin()
 		var connectedRef = firebase.database().ref(".info/connected");
 		connectedRef.on("value", function (snap: any) {
 			if (snap.val() === true) {
@@ -22,7 +26,21 @@ let InitializeDatabase = () => {
 	return config;
 };
 
-export let InitializeFirebaseUser = async () => {
+let initializeFirebaseAdmin = async () => {
+	try {
+		var serviceAccount = require("../../munco-calendar-firebase-adminsdk.json");
+		admin.initializeApp({
+			credential: admin.credential.cert(serviceAccount),
+			databaseURL: process.env.FIREBASE_DATABASE_URL
+		})
+	} catch (err) {
+		console.log("couldn't initialized Firebase Admin", err)
+	} finally {
+		console.log("initialized admin sdk")
+	}
+}
+
+let InitializeFirebaseUser = () => {
 	firebase
 		.auth()
 		.signInWithEmailAndPassword(
@@ -121,7 +139,17 @@ export let checkPathInUse = async (
 export let saveFCMToken = async (fcmToken: string): Promise<boolean> => {
 	let returnVal: boolean = await firebase.database().ref(getfcmTokenPath()).child(fcmToken).set(
 		true
-	).then(() => { return true }).catch((err) => {
+	).then(async () => {
+		let payload: IMPayload = {
+			notification: {
+				title: "Signed up for notifications",
+				body: "You're good to go!"
+			}
+		}
+		FirebaseSendMessage(fcmToken, payload)
+	}).then(() => {
+		return true
+	}).catch((err) => {
 		console.log(err);
 		return false
 	})
