@@ -2,7 +2,7 @@
 node_modules
 dist
 build
-
+munco-calendar-firebase-adminsdk.json
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
