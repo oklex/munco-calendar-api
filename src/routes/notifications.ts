@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { saveFCMToken, checkFCMToken } from "../database/Firebase";
+import { saveFCMToken, checkFCMToken, deleteFCMToken } from "../database/Firebase";
 
 const notificationsRoute = Router();
 
@@ -37,6 +37,21 @@ notificationsRoute.post('/check', async (req: Request, res: Response) => {
         }
     } catch (err) {
         console.log("check for fcm token failed", err)
+        res.status(400).send(err.message)
+    }
+})
+
+notificationsRoute.delete('/unregister', async (req: Request, res: Response) => {
+    try {
+        if (req.body.fcmToken) {
+            await deleteFCMToken(req.body.fcmToken).then(() => {
+                res.send("delete success")
+            })
+        }else {
+            throw new Error("no fcm token in body")
+        }
+    } catch (err) {
+        console.log("failed to delete token", err)
         res.status(400).send(err.message)
     }
 })
