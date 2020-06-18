@@ -41,10 +41,11 @@ notificationsRoute.post('/check', async (req: Request, res: Response) => {
     }
 })
 
-notificationsRoute.delete('/unregister', async (req: Request, res: Response) => {
+notificationsRoute.patch('/unregister', async (req: Request, res: Response) => {
     try {
         if (req.body.fcmToken) {
             await deleteFCMToken(req.body.fcmToken).then(() => {
+                console.log('delete success')
                 res.send("delete success")
             })
         }else {
