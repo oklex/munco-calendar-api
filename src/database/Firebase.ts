@@ -185,7 +185,8 @@ export let checkFCMToken = async (fcmToken: string): Promise<any> => {
 export let deleteFCMToken = async (fcmToken: string): Promise<any> => {
 	if (fcmToken === "") throw Error('empty token')
 	console.log('deleteFCMToken() ')
-	return await firebase.database().ref(getfcmTokenPath(fcmToken)).remove()
+	firebase.database().ref(getfcmTokenPath(fcmToken)).remove()
+	return true
 }
 
 export default InitializeDatabase;
