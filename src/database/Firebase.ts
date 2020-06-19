@@ -156,7 +156,8 @@ export let saveFCMToken = async (fcmToken: string): Promise<boolean> => {
 		true
 	).then(async () => {
 		let payload: IMPayload = {
-			notification: {
+			notification: {},
+			data: {
 				title: "Signed up for notifications",
 				body: "You're good to go!"
 			}
