@@ -9,8 +9,8 @@ let InitializeDatabase = () => {
 	let config: any = configService();
 	try {
 		firebase.initializeApp(config);
-		InitializeFirebaseUser();
 		if (process.env.NODE_ENV === 'PRODUCTION') {
+			InitializeFirebaseUser();
 			InitializeFirebaseUser(); initializeFirebaseAdmin()
 		}
 		var connectedRef = firebase.database().ref(".info/connected");
