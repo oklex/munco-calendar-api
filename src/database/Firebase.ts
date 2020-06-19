@@ -10,7 +10,9 @@ let InitializeDatabase = () => {
 	try {
 		firebase.initializeApp(config);
 		InitializeFirebaseUser();
-		initializeFirebaseAdmin()
+		if (process.env.NODE_ENV === 'PRODUCTION') {
+			InitializeFirebaseUser(); initializeFirebaseAdmin()
+		}
 		var connectedRef = firebase.database().ref(".info/connected");
 		connectedRef.on("value", function (snap: any) {
 			if (snap.val() === true) {
