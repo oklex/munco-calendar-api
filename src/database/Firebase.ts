@@ -3,7 +3,7 @@ var admin = require("firebase-admin");
 import configService from "./ConfigService";
 import { getfcmTokenPath } from "./getPaths";
 import FirebaseSendMessage from "./AdminMessaging";
-import { IMPayload } from "../models/Messaging";
+import { IMPayload, IMOptions } from "../models/Messaging";
 
 let InitializeDatabase = () => {
 	let config: any = configService();
@@ -40,7 +40,7 @@ let initializeFirebaseAdmin = async () => {
 			auth_provider_x509_cert_url: process.env.FIREBASE_ADMIN_AUTH_PROVIDER_URL,
 			client_x509_cert_url: process.env.FIREBASE_ADMIN_CLIENT_URL
 		};
-		console.log("serviceAccount: ", serviceAccount)
+		// console.log("serviceAccount: ", serviceAccount)
 		admin.initializeApp({
 			credential: admin.credential.cert(serviceAccount),
 			databaseURL: process.env.FIREBASE_DATABASE_URL
@@ -159,7 +159,11 @@ export let saveFCMToken = async (fcmToken: string): Promise<boolean> => {
 				body: "You're good to go!"
 			}
 		}
-		FirebaseSendMessage(fcmToken, payload)
+		let options: IMOptions = {
+			ttl: 1000,
+			collapseKey: "welcome-notification"
+		}
+		FirebaseSendMessage(fcmToken, payload, options)
 	}).then(() => {
 		return true
 	}).catch((err) => {
