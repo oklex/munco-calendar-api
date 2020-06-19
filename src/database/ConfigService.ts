@@ -21,7 +21,7 @@ const configService = ():any => {
             messagingSenderId: process.env.TEST_FIREBASE_SENDER_ID,
             appId: process.env.TEST_FIREBASE_APP_ID,
         };
-        console.log("Firebase configured for TESTING ")
+        console.log("Firebase configured for TESTING ", config)
         return config
     } else if (process.env.NODE_ENV && process.env.NODE_ENV.toUpperCase().trim() === 'PRODUCTION') {
         console.log("Firebase configured for PRODUCTION")
