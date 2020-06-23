@@ -9,7 +9,7 @@ let InitializeDatabase = () => {
 	let config: any = configService();
 	try {
 		firebase.initializeApp(config);
-		if (process.env.NODE_ENV === 'PRODUCTION') {
+		if (!process.env.GITHUB_ACTIONS) {
 			InitializeFirebaseUser();
 			InitializeFirebaseUser(); initializeFirebaseAdmin()
 		}
@@ -84,6 +84,7 @@ export let dbGetOnce = async (route: string) => {
 			.database()
 			.ref(route)
 			.once("value", (snapshot: any) => {
+				console.log(snapshot.val())
 				return snapshot;
 			});
 	} catch (err) {
