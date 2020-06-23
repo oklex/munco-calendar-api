@@ -1,6 +1,13 @@
 # MUNCO Calendar API
 This api organizes organization, event, and application data for Model UN organizations aroudn Vancouver, BC. 
 
+## How to use
+Pre-requisites:
+- have node installed
+- set-up env variables for Firebase
+```npm install```
+```npm start```
+
 # IN-PROGRESS
 [ ] Prototype a notification system
 [ ] Testing 'events' routes
