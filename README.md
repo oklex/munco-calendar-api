@@ -1,13 +1,13 @@
 # MUNCO Calendar API
 This api organizes organization, event, and application data for Model UN organizations aroudn Vancouver, BC. 
 
-# Todo
-
-[ ] Implement '/api/events/' GET routes
-
+# IN-PROGRESS
 [ ] Prototype a notification system
+[ ] Testing 'events' routes
 
+# TO-DO
 [ ] Prototype a web crawler to scan for updated information
+[ ] Add admin accounts (for secure requests)
 
 
 # Implemented Routes
