@@ -1,6 +1,10 @@
 # MUNCO Calendar API
 This api organizes organization, event, and application data for Model UN organizations aroudn Vancouver, BC. 
 
+munco.ca
+heroku link: munco-calendar.herokuapp.com
+aws link: calendar.munco.ca
+
 ## How to use
 Pre-requisites:
 - have node installed
